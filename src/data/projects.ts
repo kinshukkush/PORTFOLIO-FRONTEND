@@ -84,11 +84,11 @@ export const projects: Project[] = [
     fullDescription: 'EventHub is a full-stack event management solution built with Laravel and styled with Tailwind CSS. The platform serves as a bridge between event organizers and attendees, offering features like event creation with rich media support, advanced search filters, secure booking system, and comprehensive admin controls. The system includes automated email notifications, QR code generation for tickets, and analytics dashboard for event organizers to track performance.',
     thumbnail: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     images: [
-      '/eventhome.png', 
+      '/dash.png',
       '/createevent.png',
       '/eventdetails.png',
-      '/dash.png',
-      '/mybookings.png' 
+      'https://cdni.iconscout.com/illustration/premium/thumb/event-planning-illustration-download-in-svg-png-gif-file-formats--agenda-organization-business-task-timetable-coordination-schedule-sign-pack-illustrations-10138557.png?f=webp', 
+      'https://img.freepik.com/free-vector/appointment-booking-landing-page_23-2148565869.jpg?semt=ais_hybrid&w=740' 
     ],
     technologies: ['Laravel 10', 'Tailwind CSS', 'Blade Templates', 'MySQL', 'Alpine.js', 'Laravel Livewire', 'Stripe API'],
     features: [

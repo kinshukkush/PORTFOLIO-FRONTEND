@@ -15,29 +15,23 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
-      // Show/hide scroll to top button
       const scrollY = window.scrollY;
       setShowScrollTop(scrollY > 300);
 
-      // Calculate scroll progress
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollPercentage = (winScroll / height) * 100;
-      setScrollProgress(scrollPercentage);
+      const scrolled = (winScroll / height) * 100;
+      setScrollProgress(scrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Initial loading effect
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -47,7 +41,6 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
 
   return (
     <>
-      {/* Loading Screen */}
       <AnimatePresence>
         {isLoading && (
           <motion.div
@@ -58,7 +51,7 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
           >
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               className="relative"
             >
               <Loader2 className="w-12 h-12 text-primary-500" />
@@ -67,7 +60,6 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
         )}
       </AnimatePresence>
 
-      {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-primary-500 z-50 origin-left"
         style={{ scaleX: scrollProgress / 100 }}
@@ -75,51 +67,31 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
         transition={{ duration: 0 }}
       />
 
-      {/* Main Layout */}
-      <div className={`flex flex-col min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'dark' : ''}`}>
-        {/* Background Pattern */}
-        <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className={`flex flex-col min-h-screen ${theme === 'dark' ? 'dark' : ''} transition-colors duration-300`}>
+        <div className="fixed inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
-          
-          {/* Animated background elements */}
+
           <motion.div
             className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-100/20 dark:bg-primary-900/10 rounded-full filter blur-3xl"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            animate={{ x: [0, 100, 0], y: [0, -100, 0] }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           />
           <motion.div
             className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-100/20 dark:bg-blue-900/10 rounded-full filter blur-3xl"
-            animate={{
-              x: [0, -100, 0],
-              y: [0, 100, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            animate={{ x: [0, -100, 0], y: [0, 100, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
           />
         </div>
 
-        {/* Skip to main content link for accessibility */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-500 text-white px-4 py-2 rounded-md z-50"
         >
           Skip to main content
         </a>
-
-        {/* Navbar */}
+        
         <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-        {/* Main Content */}
         <motion.main
           id="main-content"
           className="flex-grow relative z-10"
@@ -127,16 +99,13 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Content Wrapper for consistent spacing */}
           <div className="min-h-[calc(100vh-80px)]">
             {children}
           </div>
         </motion.main>
 
-        {/* Footer */}
         <Footer />
 
-        {/* Scroll to Top Button */}
         <AnimatePresence>
           {showScrollTop && (
             <motion.button
@@ -154,30 +123,17 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
           )}
         </AnimatePresence>
 
-        {/* Mobile Navigation Overlay */}
         <div id="mobile-nav-overlay" />
-
-        {/* Modal Root */}
         <div id="modal-root" />
-
-        {/* Toast/Notification Container */}
         <div id="toast-container" className="fixed top-20 right-4 z-50 space-y-2" />
       </div>
 
-      {/* Custom Cursor (optional) */}
       {typeof window !== 'undefined' && window.innerWidth > 768 && (
         <motion.div
           className="fixed w-4 h-4 bg-primary-500 rounded-full pointer-events-none z-50 mix-blend-difference"
-          animate={{
-            x: 0,
-            y: 0,
-          }}
-          transition={{
-            type: "spring",
-            damping: 30,
-            stiffness: 200,
-          }}
-          style={{ display: 'none' }} 
+          animate={{ x: 0, y: 0 }}
+          transition={{ type: 'spring', damping: 30, stiffness: 200 }}
+          style={{ display: 'none' }}
         />
       )}
     </>

@@ -1,10 +1,10 @@
 import { motion, Variants } from 'framer-motion';
-import { 
-  Download, 
-  FileText, 
-  Plus, 
-  GraduationCap, 
-  Award, 
+import {
+  Download,
+  FileText,
+  Plus,
+  GraduationCap,
+  Award,
   Briefcase,
   Code,
   Calendar,
@@ -20,6 +20,7 @@ import { useState } from 'react';
 import PageTransition from '../components/ui/PageTransition';
 import SectionHeading from '../components/ui/SectionHeading';
 import resume from '../assets/resume.pdf';
+import { Link } from 'react-router-dom';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -171,7 +172,7 @@ const Resume = () => {
       technologies: ['JavaScript', 'Python', 'Git', 'GitHub Actions']
     }
   ];
-  
+
   const certifications: Certification[] = [
     {
       name: 'Cloud Computing',
@@ -269,18 +270,18 @@ const Resume = () => {
     <PageTransition>
       <section className="pt-32 pb-20">
         <div className="container-custom">
-          <SectionHeading 
+          <SectionHeading
             title="My Resume"
             subtitle="A comprehensive overview of my qualifications, experience, and achievements"
             centered
           >
-            <motion.div 
+            <motion.div
               className="mt-6 flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <motion.a 
+              <motion.a
                 href={resume}
                 download
                 onClick={handleDownload}
@@ -301,16 +302,15 @@ const Resume = () => {
                     <span>Download Resume PDF</span>
                   </>
                 )}
+
               </motion.a>
-              <motion.a
-                href="#contact"
+              <Link
+                to="/contact"  // Use Link instead of a regular anchor tag
                 className="btn-outline"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
-                <span><a href="/contact">Contact Me </a></span>
-              </motion.a>
+                <span>Contact Me</span>
+              </Link>
             </motion.div>
           </SectionHeading>
 
@@ -341,7 +341,7 @@ const Resume = () => {
           </motion.div>
 
           {/* Experience Section */}
-          <motion.div 
+          <motion.div
             className="mb-12"
             variants={containerVariants}
             initial="hidden"
@@ -354,7 +354,7 @@ const Resume = () => {
             </div>
             <div className="space-y-6">
               {experience.map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   variants={itemVariants}
                   className="card p-6 hover:shadow-lg transition-shadow duration-300 border-l-4 border-primary-500"
@@ -381,7 +381,7 @@ const Resume = () => {
                   <ul className="space-y-2 mb-4">
                     {item.description.map((desc, idx) => (
                       <li key={idx} className="text-gray-600 dark:text-gray-400 flex items-start">
-                                                <span className="text-primary-500 mr-2">•</span>
+                        <span className="text-primary-500 mr-2">•</span>
                         <span>{desc}</span>
                       </li>
                     ))}
@@ -389,7 +389,7 @@ const Resume = () => {
                   {item.technologies && (
                     <div className="flex flex-wrap gap-2">
                       {item.technologies.map((tech, idx) => (
-                        <span 
+                        <span
                           key={idx}
                           className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300"
                         >
@@ -404,7 +404,7 @@ const Resume = () => {
           </motion.div>
 
           {/* Education Section */}
-          <motion.div 
+          <motion.div
             className="mb-12"
             variants={containerVariants}
             initial="hidden"
@@ -417,7 +417,7 @@ const Resume = () => {
             </div>
             <div className="space-y-6">
               {education.map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   variants={itemVariants}
                   className="card p-6 hover:shadow-lg transition-shadow duration-300 border-l-4 border-primary-500"
@@ -443,7 +443,7 @@ const Resume = () => {
                   <p className="text-gray-600 dark:text-gray-400 mb-3">
                     {item.description}
                   </p>
-                  
+
                   {/* Achievements */}
                   {item.achievements && item.achievements.length > 0 && (
                     <div className="mb-3">
@@ -471,7 +471,7 @@ const Resume = () => {
                       </summary>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {item.coursework.map((course, idx) => (
-                          <span 
+                          <span
                             key={idx}
                             className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-700 dark:text-gray-300"
                           >
@@ -487,7 +487,7 @@ const Resume = () => {
           </motion.div>
 
           {/* Skills Section */}
-          <motion.div 
+          <motion.div
             className="mb-12"
             variants={containerVariants}
             initial="hidden"
@@ -516,7 +516,7 @@ const Resume = () => {
                   </div>
                   <div className="space-y-2">
                     {skillCategory.items.map((skill, idx) => (
-                      <div 
+                      <div
                         key={idx}
                         className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
                       >
@@ -531,7 +531,7 @@ const Resume = () => {
           </motion.div>
 
           {/* Certifications Section */}
-          <motion.div 
+          <motion.div
             className="mb-12"
             variants={containerVariants}
             initial="hidden"
@@ -558,7 +558,7 @@ const Resume = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {displayedCerts.map((cert, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   variants={itemVariants}
                   className="card p-6 hover:shadow-lg transition-all duration-300 group"
@@ -570,7 +570,7 @@ const Resume = () => {
                         {cert.name}
                       </h3>
                       {cert.link && (
-                        <a 
+                        <a
                           href={cert.link}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -606,7 +606,7 @@ const Resume = () => {
 
             {/* Show More/Less Button */}
             {certifications.length > 6 && (
-              <motion.div 
+              <motion.div
                 className="text-center mt-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -635,7 +635,7 @@ const Resume = () => {
           </motion.div>
 
           {/* Call to Action */}
-          <motion.div 
+          <motion.div
             className="text-center bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-2xl p-8 md:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -645,11 +645,11 @@ const Resume = () => {
               Ready to Work Together?
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities and interesting projects. 
+              I'm always open to discussing new opportunities and interesting projects.
               Let's connect and see how we can create something amazing together!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a 
+              <motion.a
                 href={resume}
                 download
                 onClick={handleDownload}

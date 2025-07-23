@@ -30,7 +30,8 @@ const ContactForm = () => {
     setStatus({ submitting: true, submitted: false, error: false, message: '' });
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      // Use VITE_API_URL for the backend URL
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,11 +152,10 @@ const ContactForm = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`p-4 rounded-lg ${
-            status.error 
-              ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400' 
-              : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-          }`}
+          className={`p-4 rounded-lg ${status.error ? 
+            'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400' : 
+            'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'}`}
+          aria-live="assertive" // Accessibility for message
         >
           {status.message}
         </motion.div>

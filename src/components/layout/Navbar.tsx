@@ -44,7 +44,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     return () => {
-      document.body.style.overflow = 'unset'; // Ensure body scroll is reset on unmount
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
