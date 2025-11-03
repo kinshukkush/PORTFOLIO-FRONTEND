@@ -16,11 +16,12 @@ import {
   BookOpen,
   Trophy
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageTransition from '../components/ui/PageTransition';
 import SectionHeading from '../components/ui/SectionHeading';
 import resume from '../assets/resume.pdf';
 import { Link } from 'react-router-dom';
+import { useDocumentTitle } from '../hooks/useSEO';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -84,6 +85,11 @@ interface Skill {
 const Resume = () => {
   const [showAllCerts, setShowAllCerts] = useState(false);
   const [downloading, setDownloading] = useState(false);
+
+  useDocumentTitle({
+    title: 'Resume',
+    description: 'View Kinshuk Saxena\'s resume, including education, experience, skills, and certifications in full-stack web development.'
+  });
 
   const handleDownload = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();

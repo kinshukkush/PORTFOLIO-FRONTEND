@@ -11,11 +11,14 @@ import {
   Github,
   Linkedin,
   Mail,
-  Download
+  Download,
+  Instagram,
+  Twitter
 } from 'lucide-react';
 import PageTransition from '../components/ui/PageTransition';
 import SectionHeading from '../components/ui/SectionHeading';
 import SkillsSection from '../components/about/SkillsSection';
+import { useDocumentTitle } from '../hooks/useSEO';
 import ExperienceSection from '../components/about/ExperienceSection';
 import { useState } from 'react';
 import pic from '../assets/pic.png';
@@ -23,6 +26,11 @@ import resume from '../assets/resume.pdf';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('story');
+
+  useDocumentTitle({
+    title: 'About Me',
+    description: 'Learn more about Kinshuk Saxena - Full Stack Developer with 2+ years of experience in React, Spring Boot, and modern web technologies.'
+  });
 
   const highlights = [
     {
@@ -76,7 +84,9 @@ const About = () => {
   const socialLinks = [
     { icon: <Github className="w-5 h-5" />, href: "https://github.com/kinshukkush", label: "GitHub" },
     { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/kinshukkush", label: "LinkedIn" },
-    { icon: <Mail className="w-5 h-5" />, href: "mailto:your.email@example.com", label: "Email" }
+    { icon: <Mail className="w-5 h-5" />, href: "mailto:kinshuksaxena3@gmail.com", label: "Email" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com/kinshuk._.saxena", label: "Instagram" },
+    { icon: <Twitter className="w-5 h-5" />, href: "https://x.com/KINSHUKSAXENA_", label: "Twitter" },
   ];
 
   const tabContent = {

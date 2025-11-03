@@ -20,6 +20,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/ui/PageTransition';
 import { getProjectById, projects, Project } from '../data/projects';
+import { useDocumentTitle } from '../hooks/useSEO';
 
 const ProjectDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,14 +33,19 @@ const ProjectDetails = () => {
   const [copied, setCopied] = useState(false);
   const [relatedProjects, setRelatedProjects] = useState<Project[]>([]);
 
+  // Update document title when project changes
+  useDocumentTitle({
+    title: project?.title || 'Project Details',
+    description: project?.shortDescription || 'View detailed information about this project'
+  });
+
   useEffect(() => {
-    const loadProject = async () => {
+    const loadProject = () => {
       if (id) {
         setLoading(true);
         try {
-          // Simulate async loading for better UX
-          await new Promise(resolve => setTimeout(resolve, 500));
-          const foundProject = await getProjectById(id);
+          // Load project immediately without artificial delay
+          const foundProject = getProjectById(id);
           setProject(foundProject || null);
           setCurrentImageIndex(0);
           
@@ -57,13 +63,14 @@ const ProjectDetails = () => {
         } catch (error) {
           console.error('Error loading project:', error);
         } finally {
-          setLoading(false);
+          // Small delay to ensure smooth transition
+          setTimeout(() => setLoading(false), 100);
         }
       }
     };
 
     loadProject();
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [id]);
 
   const handleImageLoad = () => {

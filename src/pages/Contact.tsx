@@ -3,8 +3,14 @@ import { motion } from 'framer-motion';
 import PageTransition from '../components/ui/PageTransition';
 import SectionHeading from '../components/ui/SectionHeading';
 import ContactForm from '../components/contact/ContactForm';
+import { useDocumentTitle } from '../hooks/useSEO';
 
 const Contact = () => {
+  useDocumentTitle({
+    title: 'Contact',
+    description: 'Get in touch with Kinshuk Saxena. Available for freelance projects, collaborations, and full-time opportunities.'
+  });
+
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,

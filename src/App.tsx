@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Layout from './components/layout/Layout';
-import Home from './pages/Home';
-import About from './pages/About';
-import Resume from './pages/Resume';
-import Contact from './pages/Contact';
-import ProjectDetails from './pages/ProjectDetails';
-import NotFound from './pages/NotFound';
+import LoadingSpinner from './components/ui/LoadingSpinner';
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Resume = lazy(() => import('./pages/Resume'));
+const Contact = lazy(() => import('./pages/Contact'));
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const location = useLocation();
@@ -25,6 +28,11 @@ function App() {
     }
   }, []);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -39,20 +47,18 @@ function App() {
 
   return (
     <Layout theme={theme} toggleTheme={toggleTheme}>
-      {/* --- FIX IS HERE --- */}
-      {/* 1. AnimatePresence should wrap the Routes component */}
-      <AnimatePresence mode="wait">
-        {/* 2. Pass location and a key to Routes for AnimatePresence to work */}
-        <Routes location={location} key={location.pathname}>
-          {/* 3. Remove AnimatePresence from inside each element */}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </AnimatePresence>
+      <Suspense fallback={<LoadingSpinner fullScreen text="Loading..." />}>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/project/:id" element={<ProjectDetails />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AnimatePresence>
+      </Suspense>
     </Layout>
   );
 }

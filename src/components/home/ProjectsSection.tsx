@@ -13,7 +13,7 @@ const ProjectsSection = () => {
   const [sortBy, setSortBy] = useState('latest');
 
   // Extract unique categories
-  const categories = ['all', ...new Set(projects.flatMap(p => p.categories || ['Web Development']))];
+  const categories = ['all', ...new Set(projects.map(p => p.category))];
   
   // Extract unique technologies
   const allTechnologies = [...new Set(projects.flatMap(p => p.technologies))];
@@ -28,13 +28,13 @@ const ProjectsSection = () => {
         );
       
       const matchesCategory = selectedCategory === 'all' || 
-        (project.categories || ['Web Development']).includes(selectedCategory);
+        project.category === selectedCategory;
       
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
-      if (sortBy === 'latest') return b.id - a.id;
-      if (sortBy === 'oldest') return a.id - b.id;
+      if (sortBy === 'latest') return projects.indexOf(b) - projects.indexOf(a);
+      if (sortBy === 'oldest') return projects.indexOf(a) - projects.indexOf(b);
       if (sortBy === 'alphabetical') return a.title.localeCompare(b.title);
       return 0;
     });
@@ -70,8 +70,9 @@ const ProjectsSection = () => {
         >
           <SectionHeading 
             title="Featured Projects"
-            subtitle="Explore my latest work and creative endeavors"
+            subtitle="Explore my latest work and creative endeavors showcasing modern web technologies"
             centered
+            accent
           />
         </motion.div>
 
@@ -232,7 +233,6 @@ const ProjectsSection = () => {
                   key={project.id} 
                   project={project} 
                   index={index}
-                  viewMode={viewMode}
                 />
               ))}
             </motion.div>
