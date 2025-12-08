@@ -290,6 +290,161 @@ export const projects: Project[] = [
       password: 'demo123'
     }
   },
+  {
+    id: 'python-data-pipeline-frontend',
+    title: 'E-Commerce Analytics Dashboard',
+    shortDescription: 'A modern, dark-themed analytics dashboard built with React, TypeScript, and Tailwind CSS for real-time e-commerce insights.',
+
+    fullDescription: `A powerful frontend dashboard for the Python-based E-Commerce Data Pipeline project. 
+Built with React, TypeScript, TailwindCSS, and Recharts, this application provides real-time analytics, 
+product and order management, and dynamic visualizations. Features include a stunning glassmorphism 
+dark UI, smooth animations, responsive layout, live FastAPI backend integration, and automated 
+order/product calculations. The dashboard is optimized with Vite for fast builds and deployed on Vercel 
+for reliable performance.`,
+
+    thumbnail: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+
+    images: [
+      'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
+      'https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg',
+      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
+      'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg',
+      'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg'
+    ],
+
+    technologies: [
+      'React 18',
+      'TypeScript',
+      'Vite',
+      'Tailwind CSS',
+      'Recharts',
+      'Lucide React',
+      'FastAPI (Python)',
+      'Render',
+      'Vercel'
+    ],
+
+    features: [
+      'Real-time analytics dashboard with charts',
+      'Product management with search and pagination',
+      'Order creation with auto-calculation',
+      'Dark theme glassmorphism UI',
+      'Responsive design for all devices',
+      'Dynamic forms with validation',
+      'Revenue trends and top-product charts',
+      'API integration with FastAPI backend',
+      'CORS-safe Vite proxy setup',
+      'Interactive data visualization with tooltips'
+    ],
+
+    category: 'Frontend Application',
+    status: 'completed',
+
+    githubLink: 'https://github.com/kinshukkush/PYTHON-DATA-PIPELINE-FRONTEND',
+    liveLink: 'https://python-frontend-iota.vercel.app',
+
+    demoCredentials: {
+      username: 'demo@example.com',
+      password: 'demo123'
+    }
+  },
+  {
+    id: 'endless-run-unity-game',
+    title: 'Endless Run – Enhanced Unity Edition',
+    shortDescription: 'A polished 3D endless runner game built in Unity with a modern UI theme system, advanced animations, particle effects, and optimized gameplay features.',
+
+    fullDescription: `Endless Run – Enhanced Edition is a fully upgraded version of Unity’s original Endless Runner sample game. 
+This edition modernizes the entire experience with a professional UI/UX overhaul, 5 dynamic theme presets, an advanced 
+animation system, particle effect manager, combo-based score system, enhanced button interactions, and complete 
+documentation. The game includes optimized object pooling, improved performance, better code quality, and bug fixes. 
+Built with Unity (2019.3+), it showcases gameplay programming, visual effects, UI animation workflows, and 
+production-ready component design suitable for professional game development portfolios.`,
+
+    thumbnail: 'https://images.pexels.com/photos/907173/pexels-photo-907173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+
+    images: [
+      'https://images.pexels.com/photos/907173/pexels-photo-907173.jpeg',
+      'https://images.pexels.com/photos/4753879/pexels-photo-4753879.jpeg',
+      'https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg',
+      'https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg',
+      'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg'
+    ],
+
+    technologies: [
+      'Unity 2019.3+',
+      'C#',
+      'Git LFS',
+      'Addressables System',
+      'Unity UI Toolkit',
+      'Particle Systems',
+      'Object Pooling'
+    ],
+
+    features: [
+      'Modern UI theme system with 5 presets',
+      'Advanced UI animation system',
+      'Enhanced score display with combos',
+      'Interactive buttons with hover, ripple, click animations',
+      'Dynamic particle effects with pooling',
+      'Improved gameplay stability and bug fixes',
+      'Character selection system',
+      'Consumables and power-ups',
+      'Mission and leaderboard systems',
+      'Mobile-optimized performance',
+      'Complete setup and build documentation',
+      'Addressables-based asset loading'
+    ],
+
+    category: 'Game Development (Unity 3D)',
+    status: 'completed',
+
+    githubLink: 'https://github.com/kinshukkush/ENDLESS-RUN',
+  },
+  {
+  id: 'library-management-system',
+  title: 'Library Management System – Java CLI App',
+  shortDescription: 'A fully functional command-line library management system built in Java using OOP, Collections, and File I/O for persistent data storage.',
+
+  fullDescription: `A console-based Library Management System developed in Java, showcasing Object-Oriented Programming, 
+data structures, and file handling. The system allows librarians to manage books, register members, and handle 
+book lending operations with real-time availability updates. All data is securely stored using Java’s serialization 
+(File I/O), ensuring the library state is preserved across sessions. This project demonstrates clean class design, 
+practical application of OOP principles, and modular code architecture suitable for beginners and intermediate 
+Java developers.`,
+
+  thumbnail: 'https://images.pexels.com/photos/1370296/pexels-photo-1370296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+
+  images: [
+    'https://images.pexels.com/photos/1370296/pexels-photo-1370296.jpeg',
+    'https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg',
+    'https://cdn.slidesharecdn.com/ss_thumbnails/librarymanagementsystem-180928203554-thumbnail.jpg?width=640&height=640&fit=bounds',
+    'https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg'
+  ],
+
+  technologies: [
+    'Java',
+    'Object-Oriented Programming (OOP)',
+    'Java Collections Framework',
+    'Serialization (FileOutputStream, ObjectOutputStream)',
+    'Scanner (User Input)',
+    'UUID'
+  ],
+
+  features: [
+    'Add new books (ISBN, title, author)',
+    'Register library members with unique IDs',
+    'Check-out and return books with status tracking',
+    'Real-time availability updates',
+    'Automatic data persistence using serialization',
+    'View all books and members in formatted lists',
+    'Clean modular OOP architecture (Book, Member, Library classes)'
+  ],
+
+  category: 'Java Application',
+  status: 'completed',
+
+  githubLink: 'https://github.com/kinshukkush/LIBRARY-MANAGEMENT-SYSTEM',
+},
 
 
 ];
