@@ -445,7 +445,156 @@ Java developers.`,
 
   githubLink: 'https://github.com/kinshukkush/LIBRARY-MANAGEMENT-SYSTEM',
 },
+{
+  "id": "parse-n-practice",
+  "title": "Parse & Practice – AI Test Generator",
+  "shortDescription": "AI-powered practice test generator that transforms study materials into interactive, timed tests with analytics using React, TypeScript, and OpenRouter AI.",
 
+  "fullDescription": `Parse & Practice is an AI-powered web application that instantly converts any study material into interactive practice tests. Using OpenRouter AI (GPT-3.5 Turbo), it automatically detects questions and answers from uploaded text files or pasted content, generates timed practice modes with progress tracking, achievement badges, and detailed analytics. Built with modern React 18, TypeScript, Tailwind CSS, and shadcn/ui, this responsive app simulates real exam conditions and helps students identify weak areas through smart performance tracking. Perfect for competitive exam preparation, interview practice, and academic studying.`,
+
+  "thumbnail": "https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg",
+
+  "images": [
+    "https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg",
+    "https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg",
+    "https://images.pexels.com/photos/1370296/pexels-photo-1370296.jpeg",
+    "https://cdn.slidesharecdn.com/ss_thumbnails/librarymanagementsystem-180928203554-thumbnail.jpg?width=640&height=640&fit=bounds"
+  ],
+
+  "technologies": [
+    "React 18",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "OpenRouter AI (GPT-3.5 Turbo)",
+    "Zustand",
+    "Framer Motion",
+    "Lucide React"
+  ],
+
+  "features": [
+    "AI-powered question detection from any text content",
+    "Instant test generation with multiple question formats",
+    "Timed practice mode with customizable timers",
+    "Smart progress tracking and performance analytics",
+    "Achievement system with badges and milestones",
+    "AI chat interface for content discussion",
+    "Fully responsive design (mobile + desktop)",
+    "Drag & drop file upload or text paste support",
+    "Real-time feedback and answer review",
+    "Modern UI with smooth animations"
+  ],
+
+  "category": "Web Application",
+  "status": "completed",
+
+  "githubLink": "https://github.com/kinshukkush/PARSE-N-PRACTICE",
+  liveLink: 'https://parse-n-practice.vercel.app/',
+},
+{
+  "id": "health-hub-connect",
+  "title": "HealthHub Connect – Healthcare Platform",
+  "shortDescription": "Modern full-stack healthcare management platform with React, TypeScript, MongoDB, dark mode UI, JWT auth, appointment booking, medical records, and admin dashboard.",
+
+  "fullDescription": `HealthHub Connect is a production-ready healthcare management platform featuring a beautiful dark-mode interface by default. Patients can browse doctors, book appointments with approval workflows, manage medical records securely, and customize preferences through a comprehensive settings page. Administrators access analytics dashboards and manage all appointments. Built with React 18, TypeScript, TailwindCSS, Node.js, Express, MongoDB Atlas, and JWT authentication, it includes smooth Framer Motion animations, responsive design, and complete deployment guides for Vercel (frontend) + Render/Railway (backend).`,
+
+  "thumbnail": "https://t4.ftcdn.net/jpg/15/95/75/33/360_F_1595753359_hT7suC4spWzNghicEcUEWwAriNwnyy2g.jpg",
+
+  "images": [
+    "https://imgs.search.brave.com/pkvUf5O5oMJKrOlZXcauD7oqJBoqID8yWCkgJ3CXCOk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zNDA4/ODYucGNkbi5jby93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyNC8x/MS9oZWxsby1wb3J0/ZXItcy1zLXRodW1i/LmpwZw",
+    "https://arcadia.io/assets/_webpMobile600/199687/Healthcare-Data-Platform_Integration-Challenges.webp",
+    "https://cdn.prod.website-files.com/63c0fd37a12dc3164ef8e448/65de012749ec1682e08cb28b_64883735e545bb88ffa060a1_mahalo_database.png",
+    "https://img.freepik.com/premium-photo/telemedicine-hand-holding-smartphone-medical-doctor-online-communicating-patient-vr-medical_102957-286.jpg?semt=ais_hybrid&w=740&q=80"
+  ],
+
+  "technologies": [
+    "React 18",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Framer Motion",
+    "Node.js",
+    "Express.js",
+    "MongoDB Atlas",
+    "Mongoose",
+    "JWT Authentication",
+    "bcrypt",
+    "React Router v6",
+    "React Context API"
+  ],
+
+  "features": [
+    "Secure JWT authentication with bcrypt password hashing",
+    "Real-time doctor search and appointment booking",
+    "Medical records management with secure storage",
+    "Admin dashboard with comprehensive analytics",
+    "Dark mode default with theme switcher (Light/Dark/System)",
+    "Smooth Framer Motion animations and transitions",
+    "Responsive design across all devices",
+    "Settings page with profile management",
+    "Appointment approval workflow for admins",
+    "MongoDB Atlas integration with full schema",
+    "Production deployment (Vercel + Render/Railway)",
+    "Demo accounts for immediate testing"
+  ],
+
+  "category": "Full-Stack Application",
+  "status": "completed",
+
+  "githubLink": "https://github.com/kinshukkush/health-hub-connect",
+  "liveLink" : "https://health-hub-connect-livid.vercel.app/dashboard"
+},
+
+{
+  id: 'famous-connect',
+  title: 'Famous Connect - Service Marketplace App',
+  shortDescription: 'A modern React Native mobile application connecting users with local service providers including plumbers, electricians, cleaners, painters, and movers.',
+  fullDescription: 'Famous Connect is a premium mobile marketplace that seamlessly connects users with local service providers through a sleek, performant cross-platform experience. Built with React Native, Expo, and TypeScript, the app delivers modern features including Supabase authentication with persistent sessions, real-time chat with service providers using Supabase subscriptions, comprehensive service discovery with pagination and pull-to-refresh, and a favorites system with local persistence. The application emphasizes UI/UX excellence with dark mode support, smooth animations, custom icons from Lucide React Native, and a professional theme system. State management is handled efficiently with TanStack Query for server state and Context API for global state, ensuring optimal performance and user experience across iOS and Android platforms.',
+  thumbnail: 'https://images.pexels.com/photos/4792285/pexels-photo-4792285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  images: [
+    'https://images.pexels.com/photos/4792285/pexels-photo-4792285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/3846508/pexels-photo-3846508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/5673488/pexels-photo-5673488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/4792284/pexels-photo-4792284.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  ],
+  technologies: [
+    'React Native',
+    'Expo',
+    'TypeScript',
+    'Supabase',
+    'TanStack Query',
+    'React Navigation',
+    'AsyncStorage',
+    'Lucide Icons',
+    'Formik',
+    'Yup',
+    'Axios'
+  ],
+  features: [
+    'Secure authentication with Supabase (email/password)',
+    'Persistent user sessions across app restarts',
+    'Real-time chat with service providers using subscriptions',
+    'Service discovery with search, filtering, and pagination',
+    'Favorites system with AsyncStorage persistence',
+    'Dark mode with system preference detection',
+    'Comprehensive service details with image gallery',
+    'Contact options (call, chat) and booking functionality',
+    'Pull-to-refresh for latest service updates',
+    'Profile management with booking statistics',
+    'Smooth animations and responsive design',
+    'Cross-platform support (iOS & Android)',
+    'Form validation with Formik and Yup',
+    'Native screen optimization and gesture handling'
+  ],
+  category: 'Mobile Application',
+  status: 'completed',
+  githubLink: 'https://github.com/kinshukkush/FAMOUS-CONNECT',
+  // demoCredentials: {
+  //   username: 'See DEMO_CREDENTIALS.md in repository'
+  // }
+}
 
 ];
 
