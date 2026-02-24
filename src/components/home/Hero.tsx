@@ -1,12 +1,25 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Download, Mail, Calendar, MapPin, Code, ExternalLink, Sparkles, Coffee, Award } from 'lucide-react';
+import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Briefcase, GraduationCap, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import img from '../../assets/img.jpg';
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
+};
+
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
-  const roles = ["Full Stack Developer", "UI/UX Enthusiast", "Problem Solver", "Tech Explorer"];
+  const roles = ['Problem Solver', 'Full Stack Developer', 'UI/UX Enthusiast', 'Tech Explorer'];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -15,302 +28,144 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const socialLinks = [
-    {
-      icon: <Github size={20} />,
-      href: "https://github.com/kinshukkush",
-      label: "GitHub",
-      color: "hover:bg-gray-800 dark:hover:bg-gray-700",
-      stats: "50+ repos"
-    },
-    {
-      icon: <Linkedin size={20} />,
-      href: "https://www.linkedin.com/in/kinshuk-saxena-/",
-      label: "LinkedIn",
-      color: "hover:bg-[#0077B5]",
-      stats: "500+ connections"
-    },
-    {
-      icon: <Mail size={20} />,
-      href: "mailto:kinshuksaxena3@gmail.com",
-      label: "Email",
-      color: "hover:bg-red-500",
-      stats: "Quick response"
-    }
+  const stats = [
+    { label: 'Projects Completed', value: '10+' },
+    { label: 'Happy Clients', value: '5+' },
+    { label: 'Technologies', value: '15+' },
   ];
 
-  const quickInfo = [
-    {
-      icon: <MapPin className="w-4 h-4" />,
-      text: "Jaipur, India",
-      subtext: "Open to remote"
-    },
-    {
-      icon: <Calendar className="w-4 h-4" />,
-      text: "Available for hire",
-      subtext: "Full-time/Freelance"
-    },
-    {
-      icon: <Coffee className="w-4 h-4" />,
-      text: "2+ Years Experience",
-      subtext: "In web development"
-    }
-  ];
-
-  const highlights = [
-    { number: "10+", label: "Projects Completed" },
-    { number: "5+", label: "Happy Clients" },
-    { number: "15+", label: "Technologies" }
+  const badges = [
+    { icon: <GraduationCap size={14} />, text: 'LPU Student' },
+    { icon: <Briefcase size={14} />, text: 'B.Tech CSE' },
+    { icon: <MapPin size={14} />, text: 'Jaipur, India' },
+    { icon: <Calendar size={14} />, text: '2+ Years Exp' },
   ];
 
   return (
-    <section className="pt-32 pb-20 md:min-h-[90vh] flex items-center relative overflow-hidden">
-      {/* Enhanced Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-0 w-72 h-72 bg-primary-200 dark:bg-primary-900/30 rounded-full filter blur-3xl opacity-40 animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/30 rounded-full filter blur-3xl opacity-40 animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary-100 to-blue-100 dark:from-primary-900/20 dark:to-blue-900/20 rounded-full filter blur-3xl opacity-20" />
-      </div>
+    <section className="relative min-h-screen flex items-center pt-24 pb-16 mesh-bg scanlines overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Floating elements */}
-      <motion.div 
-        className="absolute top-20 right-10 text-primary-500/20 dark:text-primary-400/20"
-        animate={{ 
-          y: [0, -20, 0],
-          rotate: [0, 10, 0]
-        }}
-        transition={{ 
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        <Code size={60} />
-      </motion.div>
+      <div className="container-custom relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-      <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-          {/* Profile Image Section */}
-          <motion.div 
-            className="lg:col-span-2 order-2 lg:order-1"
-            initial={{ opacity: 0, scale: 0.8, x: -50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+          {/* Content Left */}
+          <motion.div
+            className="lg:col-span-7 order-2 lg:order-1"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <div className="relative group max-w-md mx-auto">
-              {/* Main Image */}
-              <motion.div 
-                className="relative overflow-hidden rounded-3xl shadow-2xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="aspect-square">
-                  <img 
-                    src={img} 
-                    alt="Kinshuk Saxena" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </motion.div>
-
-              {/* Decorative elements */}
-              <motion.div 
-                className="absolute -top-4 -right-4 bg-primary-500 text-white p-3 rounded-2xl shadow-lg"
-                initial={{ rotate: -30, scale: 0 }}
-                animate={{ rotate: 0, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                whileHover={{ rotate: 10 }}
-              >
-                <Sparkles size={24} />
-              </motion.div>
-
-              <motion.div 
-                className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-xl"
-                initial={{ rotate: 30, scale: 0 }}
-                animate={{ rotate: 0, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <div className="flex items-center gap-2">
-                  <Award className="text-primary-500" size={24} />
-                  <div>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">LPU Student</p>
-                    <p className="font-semibold text-sm">B.Tech CSE</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Status indicator */}
-              <motion.div 
-                className="absolute top-4 right-4 bg-green-500 w-4 h-4 rounded-full shadow-lg"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <div className="absolute inset-0 bg-green-500 rounded-full animate-ping" />
-              </motion.div>
-            </div>
-          </motion.div>
-          
-          {/* Content Section */}
-          <motion.div 
-            className="lg:col-span-3 order-1 lg:order-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {/* Quick Info Pills */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mb-6"
-            >
-              <div className="flex flex-wrap gap-3">
-                {quickInfo.map((info, index) => (
-                  <motion.div 
-                    key={index}
-                    className="group bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-400 transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="text-primary-500 dark:text-primary-400">{info.icon}</span>
-                      <div>
-                        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{info.text}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">{info.subtext}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                Hi, I'm{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600 dark:from-primary-400 dark:to-blue-400">
-                  Kinshuk Saxena
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mb-6">
+              {badges.map((badge, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-[#00f0ff20] bg-[#00f0ff05]"
+                  style={{ fontFamily: "'JetBrains Mono', monospace", color: 'var(--text-muted)' }}
+                >
+                  <span className="text-[#00f0ff]">{badge.icon}</span>
+                  {badge.text}
                 </span>
-              </h1>
+              ))}
             </motion.div>
 
-            {/* Animated Role */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mb-6"
-            >
-              <h2 className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                <span>I'm a</span>
+            <motion.h1 variants={itemVariants} className="mb-4">
+              <span className="block text-sm tracking-[0.3em] uppercase mb-2 text-[#00f0ff] font-bold" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                // hello, i'm
+              </span>
+              <span className="block font-extrabold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tight">
+                Kinshuk <span className="text-[#00f0ff] text-glow">Saxena</span>
+              </span>
+            </motion.h1>
+
+            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
+              <span className="text-xl md:text-2xl font-semibold" style={{ color: 'var(--text-muted)' }}>
+                I'm a
+              </span>
+              <div className="h-10 overflow-hidden relative">
                 <motion.span
                   key={currentRole}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="text-primary-600 dark:text-primary-400 font-semibold"
+                  transition={{ duration: 0.5 }}
+                  className="block text-xl md:text-2xl font-bold text-[#7c3aed]"
                 >
                   {roles[currentRole]}
                 </motion.span>
-              </h2>
+              </div>
             </motion.div>
 
-            {/* Description */}
-            <motion.p 
-              className="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+            <motion.p
+              variants={itemVariants}
+              className="text-lg leading-relaxed mb-8 max-w-2xl"
+              style={{ color: 'var(--text-muted)' }}
             >
-              Passionate about crafting exceptional digital experiences through clean code and intuitive design. 
-              Currently pursuing B.Tech in Computer Science at Lovely Professional University, 
+              Passionate about crafting exceptional digital experiences through clean code and intuitive design.
+              Currently pursuing <span className="text-[#f0f4ff]">B.Tech in Computer Science at Lovely Professional University</span>,
               where I'm honing my skills in modern web technologies and exploring the frontiers of software development.
             </motion.p>
 
-            {/* Statistics */}
-            <motion.div 
-              className="grid grid-cols-3 gap-4 mb-8 max-w-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.65 }}
-            >
-              {highlights.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <motion.h3 
-                    className="text-3xl font-bold text-primary-600 dark:text-primary-400"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                  >
-                    {stat.number}
-                  </motion.h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-10">
+              <Link to="/contact" className="btn-primary group gap-2">
+                Get in touch
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link to="/resume" className="btn-outline group gap-2">
+                View Resume
+                <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 max-w-md">
+              {stats.map((stat, i) => (
+                <div key={i}>
+                  <p className="text-3xl font-extrabold text-[#00f0ff] mb-1">{stat.value}</p>
+                  <p className="text-xs uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>{stat.label}</p>
                 </div>
               ))}
             </motion.div>
-            
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-wrap gap-4 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              <Link 
-                to="/contact" 
-                className="group btn-primary flex items-center gap-2 px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <span>Get in touch</span>
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link 
-                to="/resume" 
-                className="group btn-outline flex items-center gap-2 px-6 py-3 rounded-full"
-              >
-                <span>View Resume</span>
-                <Download className="h-5 w-5 group-hover:translate-y-1 transition-transform" />
-              </Link>
-              <Link 
-                to="/contact"
-                className="group flex items-center gap-2 px-6 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              >
-                <span>Let's work together</span>
-                <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-            
-            {/* Social Links */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Connect with me</p>
-              <div className="flex flex-wrap gap-4">
-                {socialLinks.map((link, index) => (
-                  <motion.a
-                    key={index}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`group relative flex items-center gap-3 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 hover:text-white transition-all duration-300 ${link.color}`}
-                    aria-label={link.label}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {link.icon}
-                    <span className="text-sm font-medium">{link.label}</span>
-                    <span className="text-xs opacity-60">{link.stats}</span>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
+
+          {/* Image Right */}
+          <motion.div
+            className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#00f0ff] to-[#7c3aed] rounded-2xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity" />
+              <div className="relative border-spin p-1 rounded-2xl overflow-hidden" style={{ width: 'clamp(300px, 40vw, 450px)', height: 'clamp(350px, 50vw, 550px)' }}>
+                <div className="w-full h-full rounded-xl overflow-hidden bg-[#0d1224]">
+                  <img
+                    src={img}
+                    alt="Kinshuk Saxena"
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105 select-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                  />
+                </div>
+              </div>
+
+              {/* Decorative tags */}
+              <motion.div
+                className="absolute -bottom-6 -right-6 px-4 py-3 bg-[#0d1224]/80 backdrop-blur-md border border-[#1a2238] rounded-xl shadow-2xl"
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1 }}
+              >
+                <p className="text-[10px] uppercase tracking-widest text-[#8892a4] mb-1">Status</p>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-sm font-bold text-[#f0f4ff]">Available for hire</span>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

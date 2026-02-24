@@ -150,7 +150,10 @@ const About = () => {
                   <img 
                     src={pic} 
                     alt="Kinshuk Kush" 
-                    className="w-full h-auto transform transition duration-500 group-hover:scale-105"
+                    className="w-full h-auto transform transition duration-500 group-hover:scale-105 select-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
                   />
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <h3 className="text-xl font-bold">Kinshuk Kush</h3>

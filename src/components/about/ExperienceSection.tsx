@@ -25,7 +25,7 @@ const experiences: Experience[] = [
       'Guiding and mentoring peers in resume building and interview skills',
       'Facilitating communication between students and potential employers',
     ],
-    skills: ['Leadership', 'Communication', 'Mentoring', 'Event Management']
+    skills: ['Leadership', 'Communication', 'Mentoring', 'Event Management'],
   },
   {
     title: 'Freelance Web Developer',
@@ -38,7 +38,7 @@ const experiences: Experience[] = [
       'Worked closely with clients to understand their requirements and deliver tailored solutions',
       'Utilized modern frameworks such as React, Vue.js, and Node.js to build full-stack solutions',
     ],
-    skills: ['React', 'Vue.js', 'Node.js', 'Full-stack Development', 'Client Management']
+    skills: ['React', 'Vue.js', 'Node.js', 'Full-stack Development', 'Client Management'],
   },
   {
     title: 'Project Developer',
@@ -51,124 +51,157 @@ const experiences: Experience[] = [
       'Collaborated with teams to deliver robust solutions on time',
       'Gained experience in deploying applications on cloud platforms',
     ],
-    skills: ['Web Development', 'Cloud Platforms', 'Team Collaboration', 'Project Management']
+    skills: ['Web Development', 'Cloud Platforms', 'Team Collaboration', 'Project Management'],
   },
 ];
 
 const ExperienceSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900/30">
-      <div className="container max-w-4xl mx-auto px-4">
+    <section className="py-16">
+      <div className="container max-w-3xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '0px 0px -50px 0px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="mb-10"
         >
-          <h2 className="text-3xl font-bold mb-4">Work Experience</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            My professional journey and contributions
+          <p
+            className="text-xs tracking-widest uppercase mb-3"
+            style={{ fontFamily: "'JetBrains Mono', monospace", color: '#00f0ff' }}
+          >
+            // career
           </p>
+          <h2
+            className="text-3xl font-bold mb-4"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+          >
+            Work Experience
+          </h2>
+          <div style={{ width: 60, height: 3, background: '#00f0ff', borderRadius: 2 }} />
         </motion.div>
-        
-        <motion.div 
-          className="space-y-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {experiences.map((experience, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              className="card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-primary-100 dark:bg-primary-900/30 p-3 rounded-full flex-shrink-0">
-                  <BriefcaseIcon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-                </div>
-                
-                <div className="flex-1">
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div
+            className="absolute left-5 top-0 bottom-0 w-[2px]"
+            style={{ background: 'linear-gradient(to bottom, #00f0ff40, #7c3aed40, transparent)' }}
+          />
+
+          <div className="space-y-10">
+            {experiences.map((experience, index) => (
+              <motion.div
+                key={index}
+                className="relative pl-16"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                {/* Pulsing dot on line */}
+                <div
+                  className="pulse-dot absolute left-[15px] top-3 w-3 h-3 rounded-full z-10"
+                  style={{
+                    background: '#050810',
+                    border: '2px solid #00f0ff',
+                    transform: 'translateX(0)',
+                  }}
+                />
+
+                {/* Card */}
+                <div
+                  className="rounded-xl p-5 transition-all duration-300"
+                  style={{
+                    background: '#0d1224',
+                    border: '1px solid #1a2238',
+                  }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = '#00f0ff30')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = '#1a2238')}
+                >
+                  {/* Top row */}
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                      {experience.title}
-                    </h3>
-                    <span className="text-sm px-3 py-1 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-700 dark:text-primary-300 font-medium">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <BriefcaseIcon className="w-4 h-4" style={{ color: '#00f0ff' }} />
+                        <h3
+                          className="text-base font-semibold"
+                          style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+                        >
+                          {experience.title}
+                        </h3>
+                      </div>
+                      <div className="flex flex-wrap gap-3 text-xs" style={{ color: '#8892a4' }}>
+                        <span className="flex items-center gap-1">
+                          <Building size={12} />
+                          {experience.companyUrl ? (
+                            <a
+                              href={experience.companyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1 hover:text-[#f0f4ff] transition-colors"
+                            >
+                              {experience.company}
+                              <ExternalLink size={10} />
+                            </a>
+                          ) : experience.company}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <MapPin size={12} />
+                          {experience.location}
+                        </span>
+                        <span
+                          className="flex items-center gap-1"
+                          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                        >
+                          <Calendar size={12} />
+                          {experience.period}
+                        </span>
+                      </div>
+                    </div>
+                    <span
+                      className="text-xs px-2 py-0.5 rounded capitalize shrink-0"
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        background: 'rgba(0, 240, 255, 0.08)',
+                        color: '#00f0ff',
+                        border: '1px solid rgba(0, 240, 255, 0.15)',
+                      }}
+                    >
                       {experience.type}
                     </span>
                   </div>
-                  
-                  <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <Building size={16} />
-                      {experience.companyUrl ? (
-                        <a 
-                          href={experience.companyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-1"
-                        >
-                          {experience.company}
-                          <ExternalLink size={14} />
-                        </a>
-                      ) : (
-                        experience.company
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MapPin size={16} />
-                      {experience.location}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar size={16} />
-                      {experience.period}
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+
+                  {/* Description */}
+                  <ul className="space-y-1.5 mb-4">
                     {experience.description.map((item, i) => (
-                      <motion.li 
+                      <li
                         key={i}
-                        className="flex items-start gap-2"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * i }}
+                        className="flex items-start gap-2 text-sm leading-relaxed"
+                        style={{ color: '#8892a4' }}
                       >
-                        <span className="mt-2 w-1.5 h-1.5 bg-primary-500 rounded-full flex-shrink-0" />
-                        {item}
-                      </motion.li>
+                        <span
+                          className="mt-1.5 shrink-0 w-1 h-1 rounded-full"
+                          style={{ background: '#00f0ff' }}
+                        />
+                        <span style={{ fontFamily: "'DM Sans', sans-serif" }}>{item}</span>
+                      </li>
                     ))}
                   </ul>
-                  
+
+                  {/* Skill pills */}
                   {experience.skills && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 pt-3" style={{ borderTop: '1px solid #1a2238' }}>
                       {experience.skills.map((skill, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full"
+                          className="text-xs px-2 py-0.5 rounded"
+                          style={{
+                            fontFamily: "'JetBrains Mono', monospace",
+                            background: '#050810',
+                            color: '#8892a4',
+                            border: '1px solid #1a2238',
+                          }}
                         >
                           {skill}
                         </span>
@@ -176,10 +209,10 @@ const ExperienceSection = () => {
                     </div>
                   )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

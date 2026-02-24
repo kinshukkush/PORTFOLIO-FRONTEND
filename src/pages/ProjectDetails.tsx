@@ -303,7 +303,10 @@ const ProjectDetails = () => {
                       <img 
                         src={img} 
                         alt={`Thumbnail ${idx + 1}`} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover select-none"
+                        draggable={false}
+                        onContextMenu={(e) => e.preventDefault()}
+                        onDragStart={(e) => e.preventDefault()}
                       />
                     </motion.button>
                   ))}
@@ -544,7 +547,10 @@ const ProjectDetails = () => {
                       <img 
                         src={relatedProject.thumbnail} 
                         alt={relatedProject.title}
-                        className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300 select-none"
+                        draggable={false}
+                        onContextMenu={(e) => e.preventDefault()}
+                        onDragStart={(e) => e.preventDefault()}
                       />
                     </div>
                     <div className="p-4">
@@ -590,7 +596,10 @@ const ProjectDetails = () => {
               <img
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} - Full size`}
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto rounded-lg select-none"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
               />
 
               {project.images.length > 1 && (

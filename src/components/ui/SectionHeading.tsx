@@ -1,97 +1,97 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
+  monoLabel?: string;
   children?: ReactNode;
   centered?: boolean;
   icon?: ReactNode;
   accent?: boolean;
 }
 
-const SectionHeading = ({ 
-  title, 
-  subtitle, 
-  children, 
+const SectionHeading = ({
+  title,
+  subtitle,
+  monoLabel,
+  children,
   centered = false,
-  icon,
-  accent = false
 }: SectionHeadingProps) => {
   return (
     <div className={`mb-12 ${centered ? 'text-center mx-auto max-w-3xl' : ''}`}>
-      {/* Decorative line for centered headings */}
-      {centered && accent && (
-        <motion.div 
-          className="flex items-center justify-center gap-4 mb-6"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary-500" />
-          <Sparkles className="w-5 h-5 text-primary-500" />
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary-500" />
-        </motion.div>
-      )}
-
-      <div className={`flex items-center gap-3 ${centered ? 'justify-center' : ''}`}>
-        {icon && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, type: 'spring' }}
-            className="text-primary-500"
-          >
-            {icon}
-          </motion.div>
-        )}
-        
-        <motion.h2 
-          className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          {title}
-        </motion.h2>
-      </div>
-      
-      {subtitle && (
-        <motion.p 
-          className="text-lg text-gray-600 dark:text-gray-400 mt-4 leading-relaxed"
+      {/* Mono label above */}
+      {monoLabel && (
+        <motion.p
+          className="mb-3 text-xs tracking-widest uppercase"
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            color: '#00f0ff',
+          }}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+          transition={{ duration: 0.5 }}
+        >
+          {monoLabel}
+        </motion.p>
+      )}
+
+      {/* Main heading */}
+      <motion.h2
+        className="text-3xl md:text-4xl font-bold"
+        style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          color: 'var(--text-primary)',
+        }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+        transition={{ duration: 0.6 }}
+      >
+        {title}
+      </motion.h2>
+
+      {/* 60px cyan underline bar */}
+      <motion.div
+        className="mt-4"
+        style={{
+          width: 60,
+          height: 3,
+          background: '#00f0ff',
+          borderRadius: 2,
+          marginLeft: centered ? 'auto' : undefined,
+          marginRight: centered ? 'auto' : undefined,
+          transformOrigin: centered ? 'center' : 'left',
+        }}
+        initial={{ opacity: 0, scaleX: 0 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      />
+
+      {subtitle && (
+        <motion.p
+          className="mt-4 text-base leading-relaxed"
+          style={{ fontFamily: "'DM Sans', sans-serif", color: 'var(--text-muted)' }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
           {subtitle}
         </motion.p>
       )}
-      
+
       {children && (
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
           {children}
         </motion.div>
-      )}
-
-      {/* Accent underline */}
-      {accent && !centered && (
-        <motion.div 
-          className="h-1 w-20 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full mt-4"
-          initial={{ width: 0 }}
-          whileInView={{ width: 80 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        />
       )}
     </div>
   );

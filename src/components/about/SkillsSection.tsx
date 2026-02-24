@@ -1,137 +1,126 @@
 import { motion } from 'framer-motion';
-import { Code, Server, Wrench } from 'lucide-react';
 
-interface Skill {
-  name: string;
-  level: number;
-  experience?: string;
-  projects?: number;
-}
-
-interface SkillCategory {
-  category: string;
-  icon: JSX.Element;
-  description: string;
-  skills: Skill[];
-  color: string;
-}
-
-const skills: SkillCategory[] = [
-  {
-    category: 'Frontend Development',
-    icon: <Code size={24} />, // Added size prop
-    description: 'Building responsive and interactive user interfaces',
-    color: 'text-blue-500',
-    skills: [
-      { name: 'HTML & CSS', level: 90, experience: '3 years', projects: 15 },
-      { name: 'JavaScript', level: 85, experience: '2.5 years', projects: 12 },
-      { name: 'React', level: 80, experience: '2 years', projects: 8 },
-      { name: 'TypeScript', level: 75, experience: '1.5 years', projects: 6 },
-      { name: 'Tailwind CSS', level: 85, experience: '2 years', projects: 10 },
-    ],
-  },
-  {
-    category: 'Backend Development',
-    icon: <Server size={24} />,
-    description: 'Creating robust server-side applications',
-    color: 'text-green-500',
-    skills: [
-      { name: 'Node.js', level: 75, experience: '2 years', projects: 7 },
-      { name: 'Express', level: 70, experience: '2 years', projects: 6 },
-      { name: 'MongoDB', level: 65, experience: '1.5 years', projects: 5 },
-      { name: 'SQL', level: 60, experience: '1 year', projects: 4 },
-    ],
-  },
-  {
-    category: 'Tools & Others',
-    icon: <Wrench size={24} />, // Changed to Wrench
-    description: 'Essential development tools and practices',
-    color: 'text-purple-500',
-    skills: [
-      { name: 'Git', level: 80, experience: '3 years', projects: 20 },
-      { name: 'UI/UX Design', level: 70, experience: '2 years', projects: 8 },
-      { name: 'Responsive Design', level: 85, experience: '3 years', projects: 15 },
-      { name: 'Testing', level: 65, experience: '1 year', projects: 5 },
-    ],
-  },
+const skillRows: string[][] = [
+  [
+    'React', 'TypeScript', 'HTML & CSS', 'JavaScript', 'Tailwind CSS',
+    'Node.js', 'Express', 'MongoDB', 'SQL', 'Git',
+    'React', 'TypeScript', 'HTML & CSS', 'JavaScript', 'Tailwind CSS',
+    'Node.js', 'Express', 'MongoDB', 'SQL', 'Git',
+  ],
+  [
+    'Framer Motion', 'REST APIs', 'Vue.js', 'UI/UX Design', 'Responsive Design',
+    'Testing', 'Cloud Platforms', 'Laravel', 'Docker', 'Figma',
+    'Framer Motion', 'REST APIs', 'Vue.js', 'UI/UX Design', 'Responsive Design',
+    'Testing', 'Cloud Platforms', 'Laravel', 'Docker', 'Figma',
+  ],
 ];
 
 const SkillsSection = () => {
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
+    <section className="py-16 overflow-hidden">
+      <div className="container mx-auto px-4 mb-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '0px 0px -50px 0px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Technical Skills</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            A comprehensive overview of my technical expertise
+          <p
+            className="text-xs tracking-widest uppercase mb-3"
+            style={{ fontFamily: "'JetBrains Mono', monospace", color: '#00f0ff' }}
+          >
+            // skills
+          </p>
+          <h2
+            className="text-3xl font-bold mb-4"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+          >
+            Technical Skills
+          </h2>
+          <div style={{ width: 60, height: 3, background: '#00f0ff', borderRadius: 2 }} />
+          <p
+            className="mt-4 text-sm"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: '#8892a4' }}
+          >
+            Technologies I work with on a daily basis
           </p>
         </motion.div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((category, index) => (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`p-2 rounded-lg ${category.color} bg-opacity-10`}>
-                  {category.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">{category.category}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {category.description}
-                  </p>
-                </div>
-              </div>
+      {/* Marquee rows */}
+      <div className="space-y-4">
+        {/* Row 1 — scrolls left */}
+        <div className="relative flex overflow-hidden">
+          {/* Fade edges */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, #050810, transparent)' }}
+          />
+          <div
+            className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to left, #050810, transparent)' }}
+          />
+          <div className="flex marquee-track gap-4 whitespace-nowrap">
+            {skillRows[0].map((skill, i) => (
+              <SkillPill key={`row1-${i}`} name={skill} />
+            ))}
+          </div>
+        </div>
 
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    
-                    <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                        className={`h-full rounded-full ${getProgressColor(skill.level)}`}
-                      />
-                    </div>
-
-                    <div className="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
-                      <span>{skill.experience}</span>
-                      <span>{skill.projects} projects</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        {/* Row 2 — scrolls right (reverse) */}
+        <div className="relative flex overflow-hidden">
+          <div
+            className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, #050810, transparent)' }}
+          />
+          <div
+            className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to left, #050810, transparent)' }}
+          />
+          <div className="flex marquee-track-reverse gap-4 whitespace-nowrap">
+            {skillRows[1].map((skill, i) => (
+              <SkillPill key={`row2-${i}`} name={skill} variant="violet" />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-const getProgressColor = (level: number): string => {
-  if (level >= 85) return 'bg-green-500';
-  if (level >= 70) return 'bg-blue-500';
-  if (level >= 50) return 'bg-yellow-500';
-  return 'bg-red-500';
+interface SkillPillProps {
+  name: string;
+  variant?: 'cyan' | 'violet';
+}
+
+const SkillPill = ({ name, variant = 'cyan' }: SkillPillProps) => {
+  const isCyan = variant === 'cyan';
+  return (
+    <span
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm shrink-0 cursor-default select-none"
+      style={{
+        fontFamily: "'DM Sans', sans-serif",
+        background: '#0d1224',
+        border: `1px solid ${isCyan ? '#1a2238' : '#2a1a4a'}`,
+        color: isCyan ? '#8892a4' : '#a78bfa',
+        transition: 'border-color 0.2s, color 0.2s',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.borderColor = isCyan ? 'rgba(0,240,255,0.4)' : 'rgba(124,58,237,0.4)';
+        (e.currentTarget as HTMLElement).style.color = isCyan ? '#00f0ff' : '#c4b5fd';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.borderColor = isCyan ? '#1a2238' : '#2a1a4a';
+        (e.currentTarget as HTMLElement).style.color = isCyan ? '#8892a4' : '#a78bfa';
+      }}
+    >
+      <span
+        className="w-1.5 h-1.5 rounded-full shrink-0"
+        style={{ background: isCyan ? '#00f0ff' : '#7c3aed', opacity: 0.6 }}
+      />
+      {name}
+    </span>
+  );
 };
 
 export default SkillsSection;
