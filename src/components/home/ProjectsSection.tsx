@@ -14,7 +14,7 @@ const ProjectsSection = () => {
 
   // Extract unique categories
   const categories = ['all', ...new Set(projects.map(p => p.category))];
-  
+
   // Extract unique technologies
   const allTechnologies = [...new Set(projects.flatMap(p => p.technologies))];
 
@@ -23,13 +23,13 @@ const ProjectsSection = () => {
       const matchesSearch = searchQuery === '' ||
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.technologies.some(tech => 
+        project.technologies.some(tech =>
           tech.toLowerCase().includes(searchQuery.toLowerCase())
         );
-      
-      const matchesCategory = selectedCategory === 'all' || 
+
+      const matchesCategory = selectedCategory === 'all' ||
         project.category === selectedCategory;
-      
+
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -61,14 +61,14 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900/30">
+    <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900/30">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <SectionHeading 
+          <SectionHeading
             title="Featured Projects"
             subtitle="Explore my latest work and creative endeavors showcasing modern web technologies"
             centered
@@ -102,7 +102,7 @@ const ProjectsSection = () => {
             </span>
           </div>
         </motion.div>
-        
+
         {/* Controls Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -139,21 +139,19 @@ const ProjectsSection = () => {
             <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-md transition-all duration-200 ${
-                  viewMode === 'grid' 
-                    ? 'bg-white dark:bg-gray-700 shadow-sm text-primary-600 dark:text-primary-400' 
+                className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'grid'
+                    ? 'bg-white dark:bg-gray-700 shadow-sm text-primary-600 dark:text-primary-400'
                     : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
-                }`}
+                  }`}
               >
                 <Grid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-md transition-all duration-200 ${
-                  viewMode === 'list' 
-                    ? 'bg-white dark:bg-gray-700 shadow-sm text-primary-600 dark:text-primary-400' 
+                className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'list'
+                    ? 'bg-white dark:bg-gray-700 shadow-sm text-primary-600 dark:text-primary-400'
                     : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
-                }`}
+                  }`}
               >
                 <List className="w-5 h-5" />
               </button>
@@ -168,11 +166,10 @@ const ProjectsSection = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    selectedCategory === category
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${selectedCategory === category
                       ? 'bg-primary-500 text-white shadow-md'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
+                    }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </button>
@@ -229,9 +226,9 @@ const ProjectsSection = () => {
               }
             >
               {displayedProjects.map((project, index) => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
+                <ProjectCard
+                  key={project.id}
+                  project={project}
                   index={index}
                 />
               ))}
@@ -263,16 +260,16 @@ const ProjectsSection = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        
+
         {/* Load More Button */}
         {visibleProjects < filteredProjects.length && (
-          <motion.div 
+          <motion.div
             className="mt-12 text-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <button 
+            <button
               onClick={handleLoadMore}
               className="group btn-primary px-8 py-3 rounded-full inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300"
             >
@@ -285,7 +282,7 @@ const ProjectsSection = () => {
         )}
 
         {/* Projects Count */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
