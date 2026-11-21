@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Briefcase, GraduationCap, Calendar } from 'lucide-react';
+import { Download, Send, MapPin, Briefcase, GraduationCap, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import img from '../../assets/img.jpg';
+import img from '../../assets/portrait-hero.jpg';
+import TechText from '../effects/TechText';
+import DitherVeil from '../effects/DitherVeil';
+
+const roles = ['Problem Solver', 'Full Stack Developer', 'UI/UX Enthusiast', 'Tech Explorer'];
 
 const containerVariants = {
   hidden: {},
@@ -19,8 +23,6 @@ const itemVariants = {
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
-  const roles = ['Problem Solver', 'Full Stack Developer', 'UI/UX Enthusiast', 'Tech Explorer'];
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
@@ -70,12 +72,30 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="mb-4">
+            <motion.h1 variants={itemVariants} className="mb-4" aria-label="Kinshuk Saxena">
               <span className="block text-sm tracking-[0.3em] uppercase mb-2 text-[#00f0ff] font-bold" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 // hello, i'm
               </span>
-              <span className="block font-extrabold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tight">
-                Kinshuk <span className="text-[#00f0ff] text-glow">Saxena</span>
+              <span className="sr-only">Kinshuk Saxena</span>
+              <span aria-hidden="true" className="block h-[120px] w-full sm:h-[150px] lg:h-[175px]">
+                <TechText
+                  text="Kinshuk Saxena"
+                  fontFamily="Raleway"
+                  fontWeight={800}
+                  fontSize={150}
+                  letterSpacing={-0.07}
+                  color="currentColor"
+                  accentColor="#00f0ff"
+                  align="left"
+                  intro="assemble"
+                  introDuration={1.7}
+                  reach={190}
+                  specks={10}
+                  labels={false}
+                  guides={false}
+                  draggable
+                  className="hero-tech-text"
+                />
               </span>
             </motion.h1>
 
@@ -110,7 +130,7 @@ const Hero = () => {
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-10">
               <Link to="/contact" className="btn-primary group gap-2">
                 Get in touch
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <Send className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
               </Link>
               <Link to="/resume" className="btn-outline group gap-2">
                 View Resume
@@ -138,21 +158,41 @@ const Hero = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-tr from-[#00f0ff] to-[#7c3aed] rounded-2xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity" />
               <div className="relative border-spin p-1 rounded-2xl overflow-hidden" style={{ width: 'clamp(300px, 40vw, 450px)', height: 'clamp(350px, 50vw, 550px)' }}>
-                <div className="w-full h-full rounded-xl overflow-hidden bg-[#0d1224]">
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#0d1224]">
                   <img
                     src={img}
                     alt="Kinshuk Saxena"
-                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105 select-none"
+                    width={800}
+                    height={1200}
+                    className="absolute inset-0 h-full w-full object-cover select-none"
                     draggable={false}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
+                  />
+                  <DitherVeil
+                    src={img}
+                    fit="cover"
+                    pattern="bayer"
+                    pixelSize={4}
+                    levels={5}
+                    palette="duotone"
+                    inkColor="#08111f"
+                    paperColor="#9beef2"
+                    contrast={1.08}
+                    revealRadius={0.28}
+                    softness={0.55}
+                    rimColor="#a78bfa"
+                    rim={0.06}
+                    wander
+                    clickBurst
+                    className="absolute inset-0"
                   />
                 </div>
               </div>
 
               {/* Decorative tags */}
               <motion.div
-                className="absolute -bottom-6 -right-6 px-4 py-3 bg-[#0d1224]/80 backdrop-blur-md border border-[#1a2238] rounded-xl shadow-2xl"
+                className="glass-surface absolute -bottom-6 -right-2 px-4 py-3 sm:-right-6"
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1 }}

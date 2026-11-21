@@ -11,6 +11,10 @@ export interface Project {
   features: string[];
   category: string; // Added for better organization
   status: 'completed' | 'in-progress' | 'live'; // Added project status
+  publishedAt?: string;
+  featured?: boolean;
+  disclaimer?: string;
+  metrics?: string[];
   githubLink?: string;
   liveLink?: string;
   demoCredentials?: { // Added for projects that need login
@@ -46,7 +50,7 @@ export const projects: Project[] = [
     category: 'Web Application',
     status: 'completed',
     githubLink: 'https://github.com/kinshukkush/mood-ki-sun',
-    liveLink: 'https://mood-ki-sun.netlify.app' // Add your actual live link
+    liveLink: 'https://mood-ki-sun.netlify.app'
   },
 
   {
@@ -109,8 +113,7 @@ export const projects: Project[] = [
     ],
     category: 'Full Stack Application',
     status: 'completed',
-    githubLink: 'https://github.com/kinshukkush/event-management',
-    liveLink: 'https://eventhub-demo.com'
+    githubLink: 'https://github.com/kinshukkush/event-management'
   },
 
   {
@@ -141,7 +144,7 @@ export const projects: Project[] = [
     category: 'Frontend Application',
     status: 'live',
     githubLink: 'https://github.com/kinshukkush/netflix-clone',
-    liveLink: 'https://netflix-clone-kinshuk.netlify.app' // Add your actual live link
+    liveLink: 'https://netflix-clone-kinshuk.netlify.app'
   },
 
   {
@@ -846,6 +849,101 @@ no Play Store required.`,
     liveLink: 'https://github.com/kinshukkush/MUME-MUSIC-STREAMER/releases',
   },
 
+  {
+    id: 'enginova-engine-health',
+    title: 'ENGINOVA — Engine Health Intelligence',
+    shortDescription: 'A laptop-local engine health workflow that turns real workshop readings into traceable, evidence-backed reports.',
+    fullDescription: 'ENGINOVA is a workshop-focused diagnostic system for the Tatra T3B-928-70 engine. It combines BT50 vibration capture, camera-read analog gauges and manual inputs into guided operating-point test runs. A criteria engine evaluates only steady, valid evidence against workshop-manual limits or approved baselines, then produces immutable, versioned reports with PDF, CSV and JSON exports. The system deliberately separates engine condition, data confidence and diagnostic coverage so operators can see both the finding and the quality of evidence behind it.',
+    thumbnail: '/projects/enginova.svg',
+    images: ['/projects/enginova.svg'],
+    technologies: ['React 19', 'TypeScript', 'FastAPI', 'Python 3.12', 'SQLModel', 'SQLite', 'uPlot', 'Three.js', 'ReportLab'],
+    features: [
+      'Guided live or mock-input test runs with six operating points',
+      'BT50 vibration capture and camera-based analog dial reading',
+      'Evidence-based evaluation against cited manual limits and healthy baselines',
+      'Immutable versioned reports with PDF, evidence CSV and JSON exports',
+      'Data-confidence and diagnostic-coverage indicators kept separate from condition',
+      'Sensor setup, capture history and engine-specific baseline administration',
+    ],
+    category: 'AI & Industrial Systems',
+    status: 'in-progress',
+    publishedAt: '2026-11-21',
+    featured: true,
+    metrics: ['418 backend tests', '22 frontend tests', '24 evidence findings'],
+    disclaimer: 'Diagnostic findings support workshop review. They identify out-of-limit evidence, not a confirmed mechanical cause.',
+  },
+
+  {
+    id: 'pehchaan-2',
+    title: 'PEHCHAAN 2.0 — Offline Workforce Intelligence',
+    shortDescription: 'A private, on-device worker attendance and activity platform for factories, warehouses and workshops.',
+    fullDescription: 'PEHCHAAN 2.0 is an offline AI-assisted workforce visibility platform built by CyberJoar. It connects to USB or RTSP cameras, recognises registered workers, associates faces with body poses and estimates working, idle and waiting states without sending video to the cloud. The system combines multi-camera monitoring, attendance sessions, role-aware activity review, restricted-person alerts, recorded-video analysis and operational exports in a local-first desktop package.',
+    thumbnail: '/projects/pehchaan.svg',
+    images: ['/projects/pehchaan.svg'],
+    technologies: ['React 19', 'Vite', 'Tailwind CSS', 'FastAPI', 'SQLAlchemy', 'SQLite', 'InsightFace', 'YOLO', 'RTMPose', 'MediaPipe', 'ONNX Runtime'],
+    features: [
+      'Live multi-camera monitoring with identity, pose, activity, object and zone overlays',
+      'Local 1:N face recognition and searchable PEHCHAAN worker directory',
+      'Camera-driven attendance, late-arrival rules and fingerprint kiosk integration',
+      'Daily review timelines and annotated recorded-video analysis',
+      'CSV, Excel and PDF reports plus encrypted operational backup workflows',
+      'CPU, CUDA and CoreML compute modes with bilingual EN/HI guidance',
+    ],
+    category: 'AI & Industrial Systems',
+    status: 'in-progress',
+    publishedAt: '2026-11-20',
+    featured: true,
+    metrics: ['498 pytest tests', '54k+ application lines', 'Local-only processing'],
+    disclaimer: 'Activity and gesture classifications are AI-assisted estimates intended to support human review, not ground truth.',
+  },
+
+  {
+    id: 'drishti-osint',
+    title: 'DRISHTI — OSINT Intelligence Dashboard',
+    shortDescription: 'A multilingual OSINT and cybersecurity intelligence dashboard over a layered MongoDB Atlas content lake.',
+    fullDescription: 'DRISHTI is a full-stack intelligence dashboard built by CyberJoar AI over the drishti_content_lake. It ingests multilingual social-media, news, fact-check and dark-web material and organises it through a Raw, Silver, Gold and Diamond medallion architecture. Analysts can move from source content to narrative clusters, entities, geospatial patterns, alerts and evidence-backed searches without exposing MongoDB directly to the browser.',
+    thumbnail: '/projects/drishti.svg',
+    images: ['/projects/drishti.svg'],
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'FastAPI', 'Python', 'MongoDB Atlas', 'D3 Force', 'BM25', 'Porter Stemmer'],
+    features: [
+      'Raw, Silver, Gold and Diamond data-layer exploration',
+      'Physics-based D3 narrative cluster maps',
+      'BM25 search across roughly 70k documents with boolean, phrase and exact modes',
+      'China-focused geospatial exploration and narrative analytics',
+      'Entity intelligence network, alert centre and content generation tools',
+      'Backend-only database access with a typed API boundary',
+    ],
+    category: 'Cybersecurity & Intelligence',
+    status: 'completed',
+    publishedAt: '2026-11-19',
+    featured: true,
+    metrics: ['~70k searchable documents', '4 medallion layers', '8+ source families'],
+  },
+
+  {
+    id: 'metis-c',
+    title: 'METIS-C — Terrain Change Intelligence',
+    shortDescription: 'A northern-border terrain dashboard pairing illustrative sector mapping with real Sentinel-1 SAR coherence analysis.',
+    fullDescription: 'METIS-C addresses terrain visibility gaps by combining a MapLibre analyst dashboard with a real Sentinel-1 SLC coherence change-detection pipeline. Analysts choose one of five candidate sectors and a date range; the backend searches ASF acquisitions, submits same-track pairs to HyP3 INSAR_GAMMA, clips the completed rasters to the area of interest and reports mean coherence and low-coherence coverage. Results appear as a colourised map overlay and downloadable GeoTIFF for expert review.',
+    thumbnail: '/projects/metis-c.svg',
+    images: ['/projects/metis-c.svg'],
+    technologies: ['React 18', 'Vite 6', 'Tailwind CSS', 'MapLibre GL 5', 'FastAPI', 'SQLModel', 'SQLite', 'ASF Search', 'HyP3 SDK', 'Rasterio', 'Shapely'],
+    features: [
+      'Scroll-driven 3D globe introduction with reduced-motion support',
+      'Five candidate sectors with coverage bands and dual vector/satellite basemaps',
+      'Real Sentinel-1 coherence job submission and polling through ASF HyP3',
+      'Low-coherence statistics, colourised PNG overlays and GeoTIFF downloads',
+      'Credit confirmation and serialised job execution to prevent duplicate spend',
+      'Network-isolated backend tests with mocked ASF and HyP3 services',
+    ],
+    category: 'Geospatial Intelligence',
+    status: 'in-progress',
+    publishedAt: '2026-11-18',
+    featured: true,
+    metrics: ['5 candidate sectors', '100×100 km AOIs', '15–45 min real processing'],
+    disclaimer: 'Sector boundaries and infrastructure points are illustrative. Low coherence is an analyst cue, not an automatically confirmed infrastructure change.',
+  },
+
 
 
 ];
@@ -874,7 +972,10 @@ export const projectCategories = [
   'Web Application',
   'Full Stack Application',
   'Frontend Application',
-  'Mobile Application'
+  'Mobile Application',
+  'AI & Industrial Systems',
+  'Cybersecurity & Intelligence',
+  'Geospatial Intelligence'
 ];
 
 export const allTechnologies = Array.from(

@@ -12,7 +12,6 @@ interface LayoutProps {
 
 const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Manage 'dark' class on documentElement for Tailwind dark: classes
@@ -67,16 +66,19 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
     };
     animate();
 
-    const addHover = () => {
-      document.querySelectorAll('a, button, [data-hover]').forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-      });
+    const onPointerOver = (event: PointerEvent) => {
+      if ((event.target as Element | null)?.closest('a, button, [data-hover]')) ring.classList.add('hovering');
     };
-    addHover();
+    const onPointerOut = (event: PointerEvent) => {
+      if ((event.target as Element | null)?.closest('a, button, [data-hover]')) ring.classList.remove('hovering');
+    };
+    document.addEventListener('pointerover', onPointerOver);
+    document.addEventListener('pointerout', onPointerOut);
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('pointerover', onPointerOver);
+      document.removeEventListener('pointerout', onPointerOut);
       cancelAnimationFrame(rafId);
       dot.remove();
       ring.remove();
@@ -103,62 +105,12 @@ const Layout = ({ children, theme, toggleTheme }: LayoutProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1200);
-    return () => clearTimeout(timer);
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      {/* Loading screen */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center mesh-bg"
-          >
-            <div className="relative flex items-center justify-center">
-              <motion.div
-                className="absolute rounded-full border border-[#00f0ff30]"
-                style={{ width: 120, height: 120 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-              />
-              <motion.div
-                className="absolute rounded-full border border-[#7c3aed40]"
-                style={{ width: 80, height: 80 }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-              />
-              <motion.div
-                className="absolute rounded-full border border-[#00f0ff60]"
-                style={{ width: 50, height: 50 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-              />
-              <motion.span
-                className="relative z-10 text-xl font-bold"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  color: '#00f0ff',
-                  textShadow: '0 0 20px rgba(0, 240, 255, 0.5), 0 0 60px rgba(0, 240, 255, 0.2)',
-                }}
-                animate={{ opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                KS
-              </motion.span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] z-50 origin-left"

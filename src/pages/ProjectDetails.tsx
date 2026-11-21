@@ -112,18 +112,22 @@ const ProjectDetails = () => {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (showImageModal) {
-      if (e.key === 'Escape') setShowImageModal(false);
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-    }
-  };
-
   useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (!showImageModal) return;
+      if (e.key === 'Escape') setShowImageModal(false);
+      if (e.key === 'ArrowRight') {
+        setImageLoading(true);
+        setCurrentImageIndex(prev => prev === (project?.images.length || 0) - 1 ? 0 : prev + 1);
+      }
+      if (e.key === 'ArrowLeft') {
+        setImageLoading(true);
+        setCurrentImageIndex(prev => prev === 0 ? (project?.images.length || 1) - 1 : prev - 1);
+      }
+    };
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [showImageModal, currentImageIndex]);
+  }, [showImageModal, project?.images.length]);
 
   if (loading) {
     return (
@@ -177,7 +181,7 @@ const ProjectDetails = () => {
               The project you're looking for doesn't exist or has been removed.
             </p>
             <Link
-              to="/projects"
+              to="/#projects"
               className="btn-primary inline-flex items-center hover:scale-105 transition-transform"
             >
               <ArrowLeft className="mr-2 h-5 w-5" />
@@ -414,6 +418,22 @@ const ProjectDetails = () => {
                   {project.fullDescription}
                 </p>
               </motion.div>
+
+              {project.metrics && project.metrics.length > 0 && (
+                <div className="mb-8 grid gap-3 sm:grid-cols-3">
+                  {project.metrics.map(metric => (
+                    <div key={metric} className="glass-surface px-4 py-3 text-center font-mono text-sm text-[#008d98] dark:text-[#72f5ff]">
+                      {metric}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {project.disclaimer && (
+                <div className="glass-surface mb-8 border-l-2 border-l-amber-400 p-4 text-sm leading-relaxed text-[var(--text-muted)]">
+                  <strong className="text-[var(--text-primary)]">Important context:</strong> {project.disclaimer}
+                </div>
+              )}
 
               {/* Key Features */}
               <motion.div

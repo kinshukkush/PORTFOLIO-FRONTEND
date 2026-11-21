@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Calendar, Clock, Instagram, MessageCircle, Award, Coffee, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Calendar, Clock, Instagram, MessageCircle, Award, Coffee, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/ui/PageTransition';
 import SectionHeading from '../components/ui/SectionHeading';

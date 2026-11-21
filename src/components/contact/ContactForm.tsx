@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Loader } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const ContactForm = () => {
     message: ''
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -25,13 +25,13 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus({ submitting: true, submitted: false, error: false, message: '' });
 
     try {
-      // Use VITE_API_URL for the backend URL
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+      const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,12 +58,12 @@ const ContactForm = () => {
       } else {
         throw new Error(data.message || 'Something went wrong');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       setStatus({
         submitting: false,
         submitted: false,
         error: true,
-        message: error.message || 'Failed to send message. Please try again.'
+        message: error instanceof Error ? error.message : 'Failed to send message. Please try again.'
       });
     }
   };
@@ -82,10 +82,10 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-                     focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                     transition-colors duration-200"
+            minLength={2}
+            maxLength={100}
+            autoComplete="name"
+            className="input-field"
             placeholder="John Doe"
           />
         </div>
@@ -101,10 +101,9 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-                     focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                     transition-colors duration-200"
+            maxLength={254}
+            autoComplete="email"
+            className="input-field"
             placeholder="john@example.com"
           />
         </div>
@@ -120,10 +119,8 @@ const ContactForm = () => {
           name="subject"
           value={formData.subject}
           onChange={handleChange}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 
-                   bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-                   focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                   transition-colors duration-200"
+          maxLength={160}
+          className="input-field"
           placeholder="Project Inquiry"
         />
       </div>
@@ -138,11 +135,10 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           required
+          minLength={10}
+          maxLength={4000}
           rows={6}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 
-                   bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-                   focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                   transition-colors duration-200 resize-none"
+          className="input-field resize-none"
           placeholder="Tell me about your project..."
         />
       </div>
@@ -166,10 +162,7 @@ const ContactForm = () => {
         disabled={status.submitting}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full py-3 px-6 rounded-lg bg-primary-600 hover:bg-primary-700 
-                 text-white font-medium transition-colors duration-200
-                 disabled:opacity-70 disabled:cursor-not-allowed
-                 flex items-center justify-center space-x-2"
+        className="btn-primary w-full space-x-2 rounded-lg"
       >
         {status.submitting ? (
           <>

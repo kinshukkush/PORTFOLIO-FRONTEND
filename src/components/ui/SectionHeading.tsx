@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import ShatterText from './ShatterText';
 
 interface SectionHeadingProps {
   title: string;
@@ -49,7 +50,7 @@ const SectionHeading = ({
         viewport={{ once: true, margin: '0px 0px -50px 0px' }}
         transition={{ duration: 0.6 }}
       >
-        {title}
+        <ShatterText text={title} />
       </motion.h2>
 
       {/* 60px cyan underline bar */}

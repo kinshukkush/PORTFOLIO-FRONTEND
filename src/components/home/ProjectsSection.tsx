@@ -4,6 +4,7 @@ import { Search, X, Filter, Grid, List, Code2, Sparkles, TrendingUp } from 'luci
 import ProjectCard from '../ui/ProjectCard';
 import SectionHeading from '../ui/SectionHeading';
 import { projects } from '../../data/projects';
+import FeaturedProjectsCarousel from './FeaturedProjectsCarousel';
 
 const ProjectsSection = () => {
   const [visibleProjects, setVisibleProjects] = useState(6);
@@ -33,8 +34,10 @@ const ProjectsSection = () => {
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
-      if (sortBy === 'latest') return projects.indexOf(b) - projects.indexOf(a);
-      if (sortBy === 'oldest') return projects.indexOf(a) - projects.indexOf(b);
+      const aDate = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+      const bDate = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+      if (sortBy === 'latest') return bDate - aDate || projects.indexOf(b) - projects.indexOf(a);
+      if (sortBy === 'oldest') return aDate - bDate || projects.indexOf(a) - projects.indexOf(b);
       if (sortBy === 'alphabetical') return a.title.localeCompare(b.title);
       return 0;
     });
@@ -76,6 +79,8 @@ const ProjectsSection = () => {
           />
         </motion.div>
 
+        <FeaturedProjectsCarousel />
+
         {/* Stats Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -108,7 +113,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-8 space-y-4"
+          className="glass-surface mb-8 space-y-4 p-4 sm:p-5"
         >
           {/* Search and View Toggle */}
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -120,9 +125,8 @@ const ProjectsSection = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects, technologies..."
-                className="w-full pl-12 pr-12 py-3 rounded-xl border border-gray-200 dark:border-gray-700 
-                         bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                         transition-all duration-200 shadow-sm hover:shadow-md"
+                className="input-field w-full pl-12 pr-12"
+                aria-label="Search projects"
               />
               {searchQuery && (
                 <button
@@ -136,9 +140,11 @@ const ProjectsSection = () => {
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+            <div className="glass-segmented flex items-center gap-2 p-1 rounded-xl">
               <button
                 onClick={() => setViewMode('grid')}
+                aria-label="Show projects as a grid"
+                aria-pressed={viewMode === 'grid'}
                 className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'grid'
                     ? 'bg-white dark:bg-gray-700 shadow-sm text-primary-600 dark:text-primary-400'
                     : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
@@ -148,6 +154,8 @@ const ProjectsSection = () => {
               </button>
               <button
                 onClick={() => setViewMode('list')}
+                aria-label="Show projects as a list"
+                aria-pressed={viewMode === 'list'}
                 className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'list'
                     ? 'bg-white dark:bg-gray-700 shadow-sm text-primary-600 dark:text-primary-400'
                     : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
@@ -167,8 +175,8 @@ const ProjectsSection = () => {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${selectedCategory === category
-                      ? 'bg-primary-500 text-white shadow-md'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-primary-500 text-white shadow-md'
+                      : 'glass-button text-gray-700 dark:text-gray-300'
                     }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -182,9 +190,8 @@ const ProjectsSection = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 
-                         bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-primary-500
-                         cursor-pointer transition-all duration-200"
+                className="glass-button cursor-pointer rounded-lg px-4 py-2 pr-9 text-sm focus:ring-2 focus:ring-primary-500"
+                aria-label="Sort projects"
               >
                 <option value="latest">Latest First</option>
                 <option value="oldest">Oldest First</option>
@@ -230,6 +237,7 @@ const ProjectsSection = () => {
                   key={project.id}
                   project={project}
                   index={index}
+                  viewMode={viewMode as 'grid' | 'list'}
                 />
               ))}
             </motion.div>

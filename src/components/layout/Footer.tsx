@@ -1,6 +1,7 @@
 import { Github, Linkedin, Instagram, Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Lightfall from '../effects/Lightfall';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Projects', path: '/projects' },
+    { name: 'Projects', path: '/#projects' },
     { name: 'Resume', path: '/resume' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -37,12 +38,32 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative pt-20 pb-10 overflow-hidden bg-gray-50 dark:bg-[#030608]">
+    <footer className="relative overflow-hidden bg-[#030608] pb-10 pt-20 text-[#f0f4ff]">
+      <div className="absolute inset-0 opacity-70" aria-hidden="true">
+        <Lightfall
+          colors={['#00f0ff', '#7c3aed', '#f0f4ff']}
+          backgroundColor="#030608"
+          speed={0.55}
+          streakCount={42}
+          streakWidth={0.65}
+          streakLength={0.75}
+          glow={0.5}
+          density={0.65}
+          twinkle={0.18}
+          bloom={0.3}
+          opacity={0.72}
+          mouseInteraction
+          holdToWarp={false}
+          fade={0.42}
+          dpr={1.5}
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030608]/55 via-[#030608]/75 to-[#030608]" />
       {/* Top Decoration */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f0ff40] to-transparent" />
 
       {/* Ghost text background */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] dark:opacity-[0.02] select-none text-gray-900 dark:text-white">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none text-white">
         <span className="text-[20vw] font-black tracking-tighter" style={{ fontFamily: "'Raleway', sans-serif" }}>KINSHUK</span>
       </div>
 
@@ -53,10 +74,10 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block p-8 rounded-3xl border border-[#1a2238] bg-[#0d1224]/50 backdrop-blur-xl max-w-4xl w-full"
+            className="glass-surface glass-surface-strong inline-block w-full max-w-4xl rounded-3xl p-8"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-[#f0f4ff]">Let's Work Together</h2>
-            <p className="text-gray-600 dark:text-[#8892a4] mb-8 text-lg">Have a project in mind? I'd love to hear about it!</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#f0f4ff]">Let's Work Together</h2>
+            <p className="text-[#a8b3c6] mb-8 text-lg">Have a project in mind? I'd love to hear about it!</p>
             <Link to="/contact" className="btn-primary px-10 py-4 text-lg gap-2">
               <MessageSquare size={20} />
               Start a Project
@@ -68,8 +89,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* About Column */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-[#f0f4ff]">Kinshuk Saxena</h3>
-            <p className="text-gray-600 dark:text-[#8892a4] leading-relaxed">
+            <h3 className="text-2xl font-bold text-[#f0f4ff]">Kinshuk Saxena</h3>
+            <p className="text-[#a8b3c6] leading-relaxed">
               Full Stack Developer passionate about creating innovative digital solutions that make a difference. Currently pursuing B.Tech CSE at LPU.
             </p>
             <div className="flex items-center gap-3">
@@ -139,7 +160,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-10 border-t border-[#1a2238] flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-gray-500 dark:text-[#8892a4] text-sm text-center md:text-left">
-            <p>© {currentYear} <span className="text-gray-900 dark:text-[#f0f4ff] font-bold">Kinshuk Saxena</span>. All rights reserved.</p>
+            <p>© {currentYear} <span className="text-[#f0f4ff] font-bold">Kinshuk Saxena</span>. All rights reserved.</p>
             <p className="mt-1">Built with 💙 using React & Tailwind CSS</p>
           </div>
 
@@ -153,7 +174,7 @@ const Footer = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-[#0d1224] border border-[#1a2238] flex items-center justify-center text-[#8892a4] hover:text-[#f0f4ff] hover:border-[#f0f4ff40] transition-all group relative"
+                  className="glass-button group relative flex h-11 w-11 items-center justify-center rounded-xl text-[#a8b3c6] hover:text-[#f0f4ff]"
                   aria-label={link.label}
                 >
                   {link.icon}

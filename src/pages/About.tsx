@@ -21,8 +21,7 @@ import SkillsSection from '../components/about/SkillsSection';
 import { useDocumentTitle } from '../hooks/useSEO';
 import ExperienceSection from '../components/about/ExperienceSection';
 import { useState } from 'react';
-import pic from '../assets/pic.png';
-import resume from '../assets/resume.pdf';
+import pic from '../assets/portrait-about.jpg';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('story');
@@ -150,6 +149,8 @@ const About = () => {
                   <img 
                     src={pic} 
                     alt="Kinshuk Kush" 
+                    width={800}
+                    height={1200}
                     className="w-full h-auto transform transition duration-500 group-hover:scale-105 select-none"
                     draggable={false}
                     onContextMenu={(e) => e.preventDefault()}
@@ -187,14 +188,13 @@ const About = () => {
 
                   {/* Download Resume Button */}
                   <motion.a
-                    href={resume}
-                    download
+                    href="/resume"
                     className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors duration-300"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Download className="w-4 h-4" />
-                    Download Resume
+                    Browse Resumes
                   </motion.a>
                 </div>
               </div>

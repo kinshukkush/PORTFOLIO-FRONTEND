@@ -6,12 +6,13 @@ import { Project } from '../../data/projects';
 interface ProjectCardProps {
   project: Project;
   index: number;
+  viewMode?: 'grid' | 'list';
 }
 
-const ProjectCard = ({ project, index }: ProjectCardProps) => {
+const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) => {
   return (
     <motion.div
-      className="card group relative overflow-hidden"
+      className={`card group relative overflow-hidden ${viewMode === 'list' ? 'md:grid md:grid-cols-[minmax(240px,34%)_1fr]' : ''}`}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
@@ -25,7 +26,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: '6rem',
-          color: '#f0f4ff',
+          color: 'var(--text-primary)',
           opacity: 0.04,
           lineHeight: 1,
         }}
@@ -35,7 +36,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       </span>
 
       {/* Image area */}
-      <div className="relative overflow-hidden" style={{ height: '192px' }}>
+      <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-56 md:h-full md:min-h-64' : 'h-48'}`}>
         <img
           src={project.thumbnail}
           alt={project.title}
