@@ -125,7 +125,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         {/* Title */}
         <h3
           className="text-lg font-semibold mb-2 line-clamp-1"
-          style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+          style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-primary)' }}
         >
           {project.title}
         </h3>
@@ -133,7 +133,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         {/* Description */}
         <p
           className="text-sm leading-relaxed mb-4 line-clamp-2"
-          style={{ fontFamily: "'DM Sans', sans-serif", color: '#8892a4' }}
+          style={{ fontFamily: "'DM Sans', sans-serif", color: 'var(--text-muted)' }}
         >
           {project.shortDescription}
         </p>

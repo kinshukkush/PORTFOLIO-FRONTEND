@@ -22,7 +22,7 @@ const FeaturedProjectsCarousel = () => {
           <p className="eyebrow">Selected work</p>
           <h3 className="text-xl font-bold sm:text-2xl">Interactive project reel</h3>
         </div>
-        <p className="text-sm text-[var(--text-muted)]">Drag, scroll, or use arrow keys. Select a card to explore.</p>
+        <p className="text-sm text-[var(--text-muted)]">Moves automatically. Touch, drag, scroll, or use arrow keys to take control.</p>
       </div>
       <div className="relative h-[430px] w-full sm:h-[520px]">
         <FlexCarousel
@@ -46,8 +46,8 @@ const FeaturedProjectsCarousel = () => {
           dispersion={0.53}
           liquid={0.51}
           followCursor={false}
-          autoplay={false}
-          interval={4}
+          autoplay
+          interval={3}
           captureWheel={false}
           onSelect={index => navigate(`/project/${featured[index].id}`)}
           className="text-[var(--text-primary)]"

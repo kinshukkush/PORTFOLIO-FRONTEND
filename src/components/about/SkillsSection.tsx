@@ -33,14 +33,14 @@ const SkillsSection = () => {
           </p>
           <h2
             className="text-3xl font-bold mb-4"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-primary)' }}
           >
             Technical Skills
           </h2>
           <div style={{ width: 60, height: 3, background: '#00f0ff', borderRadius: 2 }} />
           <p
             className="mt-4 text-sm"
-            style={{ fontFamily: "'DM Sans', sans-serif", color: '#8892a4' }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: 'var(--text-muted)' }}
           >
             Technologies I work with on a daily basis
           </p>
@@ -54,11 +54,11 @@ const SkillsSection = () => {
           {/* Fade edges */}
           <div
             className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #050810, transparent)' }}
+            style={{ background: 'linear-gradient(to right, var(--bg-primary), transparent)' }}
           />
           <div
             className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, #050810, transparent)' }}
+            style={{ background: 'linear-gradient(to left, var(--bg-primary), transparent)' }}
           />
           <div className="flex marquee-track gap-4 whitespace-nowrap">
             {skillRows[0].map((skill, i) => (
@@ -71,11 +71,11 @@ const SkillsSection = () => {
         <div className="relative flex overflow-hidden">
           <div
             className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #050810, transparent)' }}
+            style={{ background: 'linear-gradient(to right, var(--bg-primary), transparent)' }}
           />
           <div
             className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, #050810, transparent)' }}
+            style={{ background: 'linear-gradient(to left, var(--bg-primary), transparent)' }}
           />
           <div className="flex marquee-track-reverse gap-4 whitespace-nowrap">
             {skillRows[1].map((skill, i) => (
@@ -100,9 +100,9 @@ const SkillPill = ({ name, variant = 'cyan' }: SkillPillProps) => {
       className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm shrink-0 cursor-default select-none"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        background: '#0d1224',
-        border: `1px solid ${isCyan ? '#1a2238' : '#2a1a4a'}`,
-        color: isCyan ? '#8892a4' : '#a78bfa',
+        background: 'var(--card-bg)',
+        border: `1px solid ${isCyan ? 'var(--card-border)' : 'rgba(124,58,237,.35)'}`,
+        color: isCyan ? 'var(--text-muted)' : '#7c3aed',
         transition: 'border-color 0.2s, color 0.2s',
       }}
       onMouseEnter={e => {
@@ -110,8 +110,8 @@ const SkillPill = ({ name, variant = 'cyan' }: SkillPillProps) => {
         (e.currentTarget as HTMLElement).style.color = isCyan ? '#00f0ff' : '#c4b5fd';
       }}
       onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.borderColor = isCyan ? '#1a2238' : '#2a1a4a';
-        (e.currentTarget as HTMLElement).style.color = isCyan ? '#8892a4' : '#a78bfa';
+        (e.currentTarget as HTMLElement).style.borderColor = isCyan ? 'var(--card-border)' : 'rgba(124,58,237,.35)';
+        (e.currentTarget as HTMLElement).style.color = isCyan ? 'var(--text-muted)' : '#7c3aed';
       }}
     >
       <span

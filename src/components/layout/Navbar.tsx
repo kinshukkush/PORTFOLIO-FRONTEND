@@ -11,7 +11,7 @@ interface NavbarProps {
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
-  { name: 'Projects', path: '/#projects' },
+  { name: 'Projects', path: '/projects' },
   { name: 'Resume', path: '/resume' },
   { name: 'Contact', path: '/contact' },
 ];
@@ -46,7 +46,6 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   useEffect(() => { setIsOpen(false); }, [location.pathname, location.hash]);
 
   const isLinkActive = (path: string) => {
-    if (path === '/#projects') return location.pathname === '/' && location.hash === '#projects';
     return location.pathname === path && !location.hash;
   };
 
@@ -64,8 +63,8 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
           <div className="flex items-center justify-between">
             {/* Logo Section */}
             <Link to="/" className="relative group flex items-center gap-2" data-hover>
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00f0ff] to-[#7c3aed] p-[1px] group-hover:rotate-12 transition-transform duration-300">
-                <div className="w-full h-full rounded-[10px] bg-white dark:bg-[#050810] flex items-center justify-center">
+              <div className="logo-glass h-10 w-10 rounded-xl p-[1px] transition-transform duration-300 group-hover:rotate-6">
+                <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-white/20 dark:bg-white/5">
                   <span className="text-transparent bg-clip-text bg-gradient-to-tr from-[#00f0ff] to-[#7c3aed] font-black text-xl leading-none">
                     K
                   </span>
@@ -80,7 +79,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="glass-segmented hidden md:flex items-center gap-1 p-1 rounded-full">
+            <div className="mac-glass hidden md:flex items-center gap-1 p-1 rounded-full">
               {navLinks.map((link) => {
                 const isActive = isLinkActive(link.path);
                 return (
@@ -89,14 +88,14 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
                     to={link.path}
                     data-hover
                     className={`relative px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${isActive
-                      ? 'text-white'
-                      : 'text-gray-500 dark:text-[#8892a4] hover:text-[#00f0ff]'
+                      ? 'text-[var(--text-primary)]'
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                       }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="nav-bg"
-                        className="absolute inset-0 bg-gradient-to-r from-[#00f0ff] to-[#7c3aed] rounded-full shadow-md"
+                        className="mac-glass-active absolute inset-0 rounded-full"
                         transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -110,23 +109,20 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             <div className="hidden md:flex items-center gap-3">
               <button
                 onClick={toggleTheme}
-                className="glass-button w-10 h-10 rounded-full flex items-center justify-center text-[#00f0ff] hover:border-[#00f0ff] transition-all overflow-hidden relative group"
+                className="mac-glass-button w-10 h-10 rounded-full flex items-center justify-center text-[var(--text-primary)]"
                 aria-label="Toggle theme"
                 data-hover
               >
-                <motion.div
-                  animate={{ y: theme === 'dark' ? -40 : 0 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  className="flex flex-col items-center justify-center w-full"
-                >
-                  <div className="h-10 w-full flex items-center justify-center"><Sun size={20} /></div>
-                  <div className="h-10 w-full flex items-center justify-center"><Moon size={20} /></div>
-                </motion.div>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span key={theme} initial={{ opacity: 0, rotate: -35, scale: 0.7 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, rotate: 35, scale: 0.7 }} className="absolute inset-0 flex items-center justify-center">
+                    {theme === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
+                  </motion.span>
+                </AnimatePresence>
               </button>
 
               <Link
                 to="/contact"
-                className="glass-button px-6 py-2.5 rounded-full text-sm font-bold text-[var(--text-primary)] hover:-translate-y-0.5 transition-all"
+                className="mac-glass-button px-6 py-2.5 rounded-full text-sm font-bold text-[var(--text-primary)] hover:-translate-y-0.5"
                 data-hover
               >
                 Let's Talk
@@ -188,7 +184,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
                 <div className="flex gap-4">
                   <a aria-label="GitHub" href="https://github.com/kinshukkush" target="_blank" rel="noreferrer" className="glass-button w-11 h-11 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#00f0ff] transition-colors"><Github size={20} /></a>
                   <a aria-label="LinkedIn" href="https://www.linkedin.com/in/kinshuk-saxena-/" target="_blank" rel="noreferrer" className="glass-button w-11 h-11 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#00f0ff] transition-colors"><Linkedin size={20} /></a>
-                  <a aria-label="Instagram" href="https://instagram.com/kinshuk._.saxena" target="_blank" rel="noreferrer" className="glass-button w-11 h-11 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#00f0ff] transition-colors"><Instagram size={20} /></a>
+                  <a aria-label="Instagram" href="https://www.instagram.com/kinshuk_.saxena" target="_blank" rel="noreferrer" className="glass-button w-11 h-11 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#00f0ff] transition-colors"><Instagram size={20} /></a>
                 </div>
                 <Link to="/contact" className="text-[#00f0ff] font-bold flex items-center gap-2">
                   Contact Me <ArrowRight size={16} />

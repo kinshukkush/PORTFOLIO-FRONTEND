@@ -14,44 +14,30 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: 'Student Placement Coordinator',
-    company: 'Lovely Professional University',
-    location: 'Phagwara, Punjab',
-    period: 'Aug 2022 - Present',
-    type: 'Part-time',
-    companyUrl: 'https://www.lpu.in',
+    title: 'Software Developer',
+    company: 'CyberJoar AI',
+    location: 'Gurugram, Haryana',
+    period: 'Mar 2026 - Present',
+    type: 'Full-time',
     description: [
-      'Coordinating with companies and organizing placement drives for students',
-      'Guiding and mentoring peers in resume building and interview skills',
-      'Facilitating communication between students and potential employers',
+      'Building production AI products including PEHCHAAN, CMS and METIS from architecture through deployment',
+      'Designed asynchronous computer-vision pipelines with parallel inference, real-time APIs, alerts and audit-ready logging',
+      'Delivering secure, offline and on-prem systems with CPU/GPU fallbacks, Docker packaging, JWT and role-based access',
     ],
-    skills: ['Leadership', 'Communication', 'Mentoring', 'Event Management'],
+    skills: ['Python', 'FastAPI', 'React', 'ONNX Runtime', 'WebSockets', 'Docker', 'Computer Vision'],
   },
   {
-    title: 'Freelance Web Developer',
+    title: 'Software Development Engineer',
     company: 'Self-Employed',
     location: 'Remote',
-    period: 'Jan 2021 - Present',
+    period: 'Sep 2024 - May 2025',
     type: 'Freelance',
     description: [
-      'Developed a variety of web applications for small businesses and startups',
-      'Worked closely with clients to understand their requirements and deliver tailored solutions',
-      'Utilized modern frameworks such as React, Vue.js, and Node.js to build full-stack solutions',
+      'Translated client requirements into scoped, maintainable web and mobile product releases',
+      'Built responsive frontends, backend services and REST/WebSocket integrations with modern JavaScript and Python stacks',
+      'Owned testing, deployment and post-release iteration while communicating technical trade-offs clearly',
     ],
-    skills: ['React', 'Vue.js', 'Node.js', 'Full-stack Development', 'Client Management'],
-  },
-  {
-    title: 'Project Developer',
-    company: 'Various Projects',
-    location: 'Remote',
-    period: '2020 - Present',
-    type: 'Contract',
-    description: [
-      'Designed and developed complex web applications as part of academic and personal projects',
-      'Collaborated with teams to deliver robust solutions on time',
-      'Gained experience in deploying applications on cloud platforms',
-    ],
-    skills: ['Web Development', 'Cloud Platforms', 'Team Collaboration', 'Project Management'],
+    skills: ['React', 'TypeScript', 'Node.js', 'Python', 'REST APIs', 'CI/CD', 'Client Delivery'],
   },
 ];
 
@@ -74,7 +60,7 @@ const ExperienceSection = () => {
           </p>
           <h2
             className="text-3xl font-bold mb-4"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-primary)' }}
           >
             Work Experience
           </h2>
@@ -103,7 +89,7 @@ const ExperienceSection = () => {
                 <div
                   className="pulse-dot absolute left-[15px] top-3 w-3 h-3 rounded-full z-10"
                   style={{
-                    background: '#050810',
+                    background: 'var(--bg-primary)',
                     border: '2px solid #00f0ff',
                     transform: 'translateX(0)',
                   }}
@@ -113,11 +99,11 @@ const ExperienceSection = () => {
                 <div
                   className="rounded-xl p-5 transition-all duration-300"
                   style={{
-                    background: '#0d1224',
-                    border: '1px solid #1a2238',
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--card-border)',
                   }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = '#00f0ff30')}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = '#1a2238')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = 'var(--card-border)')}
                 >
                   {/* Top row */}
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
@@ -126,12 +112,12 @@ const ExperienceSection = () => {
                         <BriefcaseIcon className="w-4 h-4" style={{ color: '#00f0ff' }} />
                         <h3
                           className="text-base font-semibold"
-                          style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#f0f4ff' }}
+                          style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-primary)' }}
                         >
                           {experience.title}
                         </h3>
                       </div>
-                      <div className="flex flex-wrap gap-3 text-xs" style={{ color: '#8892a4' }}>
+                      <div className="flex flex-wrap gap-3 text-xs" style={{ color: 'var(--text-muted)' }}>
                         <span className="flex items-center gap-1">
                           <Building size={12} />
                           {experience.companyUrl ? (
@@ -139,7 +125,7 @@ const ExperienceSection = () => {
                               href={experience.companyUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center gap-1 hover:text-[#f0f4ff] transition-colors"
+                              className="flex items-center gap-1 hover:text-[var(--text-primary)] transition-colors"
                             >
                               {experience.company}
                               <ExternalLink size={10} />
@@ -178,7 +164,7 @@ const ExperienceSection = () => {
                       <li
                         key={i}
                         className="flex items-start gap-2 text-sm leading-relaxed"
-                        style={{ color: '#8892a4' }}
+                        style={{ color: 'var(--text-muted)' }}
                       >
                         <span
                           className="mt-1.5 shrink-0 w-1 h-1 rounded-full"
@@ -191,16 +177,16 @@ const ExperienceSection = () => {
 
                   {/* Skill pills */}
                   {experience.skills && (
-                    <div className="flex flex-wrap gap-2 pt-3" style={{ borderTop: '1px solid #1a2238' }}>
+                    <div className="flex flex-wrap gap-2 pt-3" style={{ borderTop: '1px solid var(--card-border)' }}>
                       {experience.skills.map((skill, i) => (
                         <span
                           key={i}
                           className="text-xs px-2 py-0.5 rounded"
                           style={{
                             fontFamily: "'JetBrains Mono', monospace",
-                            background: '#050810',
-                            color: '#8892a4',
-                            border: '1px solid #1a2238',
+                            background: 'var(--bg-primary)',
+                            color: 'var(--text-muted)',
+                            border: '1px solid var(--card-border)',
                           }}
                         >
                           {skill}

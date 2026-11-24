@@ -1,6 +1,6 @@
 import PageTransition from '../components/ui/PageTransition';
 import Hero from '../components/home/Hero';
-import ProjectsSection from '../components/home/ProjectsSection';
+import FeaturedProjectsSection from '../components/home/FeaturedProjectsSection';
 import { useDocumentTitle } from '../hooks/useSEO';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <PageTransition>
       <Hero />
-      <ProjectsSection />
+      <FeaturedProjectsSection />
     </PageTransition>
   );
 };

@@ -181,7 +181,7 @@ const ProjectDetails = () => {
               The project you're looking for doesn't exist or has been removed.
             </p>
             <Link
-              to="/#projects"
+              to="/projects"
               className="btn-primary inline-flex items-center hover:scale-105 transition-transform"
             >
               <ArrowLeft className="mr-2 h-5 w-5" />
@@ -203,7 +203,7 @@ const ProjectDetails = () => {
               Home
             </Link>
             <ChevronRight className="w-4 h-4 text-gray-400" />
-            <Link to="/#projects" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <Link to="/projects" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
               Projects
             </Link>
             <ChevronRight className="w-4 h-4 text-gray-400" />

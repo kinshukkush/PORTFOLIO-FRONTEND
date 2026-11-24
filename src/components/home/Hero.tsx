@@ -6,7 +6,7 @@ import img from '../../assets/portrait-hero.jpg';
 import TechText from '../effects/TechText';
 import DitherVeil from '../effects/DitherVeil';
 
-const roles = ['Problem Solver', 'Full Stack Developer', 'UI/UX Enthusiast', 'Tech Explorer'];
+const roles = ['Software Developer', 'AI Systems Engineer', 'Full Stack Developer', 'Problem Solver'];
 
 const containerVariants = {
   hidden: {},
@@ -37,9 +37,9 @@ const Hero = () => {
   ];
 
   const badges = [
-    { icon: <GraduationCap size={14} />, text: 'LPU Student' },
-    { icon: <Briefcase size={14} />, text: 'B.Tech CSE' },
-    { icon: <MapPin size={14} />, text: 'Jaipur, India' },
+    { icon: <GraduationCap size={14} />, text: 'B.Tech CSE Graduate' },
+    { icon: <Briefcase size={14} />, text: 'CyberJoar AI' },
+    { icon: <MapPin size={14} />, text: 'Gurugram, India' },
     { icon: <Calendar size={14} />, text: '2+ Years Exp' },
   ];
 
@@ -122,9 +122,9 @@ const Hero = () => {
               className="text-lg leading-relaxed mb-8 max-w-2xl"
               style={{ color: 'var(--text-muted)' }}
             >
-              Passionate about crafting exceptional digital experiences through clean code and intuitive design.
-              Currently pursuing <span className="text-[#f0f4ff]">B.Tech in Computer Science at Lovely Professional University</span>,
-              where I'm honing my skills in modern web technologies and exploring the frontiers of software development.
+              Software Developer at CyberJoar AI, building production-ready computer vision, backend and full-stack systems.
+              I turn complex AI workflows into <span className="font-semibold text-[var(--text-primary)]">fast, secure, offline-first products</span>
+              {' '}for real operational environments.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-10">
@@ -185,7 +185,7 @@ const Hero = () => {
                     rim={0.06}
                     wander
                     clickBurst
-                    className="absolute inset-0"
+                    className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ const Hero = () => {
                 <p className="text-[10px] uppercase tracking-widest text-[#8892a4] mb-1">Status</p>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-sm font-bold text-[#f0f4ff]">Available for hire</span>
+                  <span className="text-sm font-bold text-[var(--text-primary)]">Available for hire</span>
                 </div>
               </motion.div>
             </div>

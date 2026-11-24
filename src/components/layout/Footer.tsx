@@ -18,7 +18,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Projects', path: '/#projects' },
+    { name: 'Projects', path: '/projects' },
     { name: 'Resume', path: '/resume' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -26,14 +26,14 @@ const Footer = () => {
   const socialLinks = [
     { icon: <Github size={20} />, href: 'https://github.com/kinshukkush', label: 'GitHub', color: '#ffffff' },
     { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/kinshuk-saxena-/', label: 'LinkedIn', color: '#0077B5' },
-    { icon: <Instagram size={20} />, href: 'https://instagram.com/kinshuk._.saxena', label: 'Instagram', color: '#E1306C' },
+    { icon: <Instagram size={20} />, href: 'https://www.instagram.com/kinshuk_.saxena', label: 'Instagram', color: '#E1306C' },
     { icon: <Mail size={20} />, href: 'mailto:kinshuksaxena3@gmail.com', label: 'Email', color: '#00f0ff' },
   ];
 
   const contactInfo = [
     { icon: <Mail size={18} />, label: 'Email', value: 'kinshuksaxena3@gmail.com', href: 'mailto:kinshuksaxena3@gmail.com' },
     { icon: <Phone size={18} />, label: 'Phone', value: '+91 9057538521', href: 'tel:+919057538521' },
-    { icon: <MapPin size={18} />, label: 'Location', value: 'Jaipur, Rajasthan, India' },
+    { icon: <MapPin size={18} />, label: 'Location', value: 'Gurugram, Haryana, India' },
     { icon: <Clock size={18} />, label: 'Availability', value: 'Mon-Fri, 9AM-6PM IST' },
   ];
 
@@ -58,7 +58,8 @@ const Footer = () => {
           dpr={1.5}
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030608]/55 via-[#030608]/75 to-[#030608]" />
+      <div className="footer-stars absolute inset-0" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030608]/35 via-[#030608]/65 to-[#030608]" />
       {/* Top Decoration */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f0ff40] to-transparent" />
 
@@ -74,10 +75,10 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-surface glass-surface-strong inline-block w-full max-w-4xl rounded-3xl p-8"
+            className="footer-glass inline-block w-full max-w-4xl rounded-3xl p-8"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#f0f4ff]">Let's Work Together</h2>
-            <p className="text-[#a8b3c6] mb-8 text-lg">Have a project in mind? I'd love to hear about it!</p>
+            <h2 className="mb-4 text-3xl font-bold text-[#f0f4ff] md:text-5xl">Build Something That Works</h2>
+            <p className="mb-8 text-lg text-[#a8b3c6]">Have a hard problem or a production idea? Let's turn it into reliable software.</p>
             <Link to="/contact" className="btn-primary px-10 py-4 text-lg gap-2">
               <MessageSquare size={20} />
               Start a Project
@@ -91,7 +92,7 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-[#f0f4ff]">Kinshuk Saxena</h3>
             <p className="text-[#a8b3c6] leading-relaxed">
-              Full Stack Developer passionate about creating innovative digital solutions that make a difference. Currently pursuing B.Tech CSE at LPU.
+              AI-focused Software Developer at CyberJoar AI, building production-ready computer vision, backend and full-stack systems for offline and on-prem environments.
             </p>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#00f0ff10] flex items-center justify-center text-[#00f0ff]">
@@ -174,7 +175,7 @@ const Footer = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-button group relative flex h-11 w-11 items-center justify-center rounded-xl text-[#a8b3c6] hover:text-[#f0f4ff]"
+                  className="footer-social group relative flex h-11 w-11 items-center justify-center rounded-xl text-[#d8e2f0] hover:text-white"
                   aria-label={link.label}
                 >
                   {link.icon}

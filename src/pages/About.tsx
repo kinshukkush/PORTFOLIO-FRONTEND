@@ -28,7 +28,7 @@ const About = () => {
 
   useDocumentTitle({
     title: 'About Me',
-    description: 'Learn more about Kinshuk Saxena - Full Stack Developer with 2+ years of experience in React, Spring Boot, and modern web technologies.'
+    description: 'Learn more about Kinshuk Saxena — Software Developer at CyberJoar AI building computer vision, backend and full-stack systems.'
   });
 
   const highlights = [
@@ -49,14 +49,14 @@ const About = () => {
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
-      description: "Jaipur, India",
+      description: "Gurugram, India",
       color: "text-green-500",
       bgColor: "bg-green-50 dark:bg-green-900/20"
     },
     {
       icon: <Code className="w-5 h-5" />,
       title: "Focus",
-      description: "Full Stack",
+      description: "AI Systems",
       color: "text-orange-500",
       bgColor: "bg-orange-50 dark:bg-orange-900/20"
     }
@@ -84,7 +84,7 @@ const About = () => {
     { icon: <Github className="w-5 h-5" />, href: "https://github.com/kinshukkush", label: "GitHub" },
     { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/kinshukkush", label: "LinkedIn" },
     { icon: <Mail className="w-5 h-5" />, href: "mailto:kinshuksaxena3@gmail.com", label: "Email" },
-    { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com/kinshuk._.saxena", label: "Instagram" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/kinshuk_.saxena", label: "Instagram" },
     { icon: <Twitter className="w-5 h-5" />, href: "https://x.com/KINSHUKSAXENA_", label: "Twitter" },
   ];
 
@@ -92,19 +92,19 @@ const About = () => {
     story: {
       title: "My Story",
       content: [
-        "Hello! I'm Kinshuk Saxena, a passionate Full Stack Developer based in the vibrant city of Jaipur, Rajasthan. My journey into the world of technology began during my school days at St. Teresa School, where I first discovered the magic of turning ideas into digital reality.",
-        "Currently pursuing my B.Tech in Computer Science Engineering, I've immersed myself in the ever-evolving landscape of web development. My expertise spans across modern frameworks like React.js, Node.js, and Laravel, allowing me to craft end-to-end solutions that not only function flawlessly but also provide exceptional user experiences.",
-        "What drives me is the challenge of solving complex problems and the satisfaction of seeing my code come to life. From building responsive music streaming platforms to developing comprehensive event management systems, each project has been a stepping stone in my continuous learning journey.",
-        "Beyond coding, I'm an avid hiker who finds inspiration in nature's patterns and a photography enthusiast who captures moments that tell stories. I believe in the philosophy of continuous improvement and am always eager to explore new technologies and methodologies that push the boundaries of what's possible."
+        "I'm Kinshuk Saxena, a Software Developer at CyberJoar AI in Gurugram. I build production-oriented AI, backend and full-stack products, with a particular focus on computer vision systems that must stay fast, private and dependable in real operational environments.",
+        "My work spans Python, FastAPI, React, ONNX Runtime, WebSockets and Docker. Across products such as PEHCHAAN, CMS and METIS, I have worked from architecture and asynchronous inference pipelines through APIs, security, deployment and the interfaces operators use every day.",
+        "I completed my B.Tech in Computer Science Engineering at Lovely Professional University in May 2026. Before joining CyberJoar AI, freelance engineering taught me to translate loosely defined client needs into maintainable releases, communicate trade-offs clearly and own delivery end to end.",
+        "What keeps me engaged is the boundary between ambitious ideas and software that genuinely works: measurable performance, thoughtful failure handling, privacy-aware design and an experience that remains clear under pressure. Outside work, hiking and photography keep my eye trained on patterns, framing and detail."
       ]
     },
     approach: {
       title: "My Approach",
       content: [
-        "I believe in writing clean, maintainable code that stands the test of time. My development philosophy centers around three core principles: User-First Design, Performance Optimization, and Continuous Innovation.",
-        "When tackling a new project, I start by deeply understanding the problem space and user needs. This involves thorough research, stakeholder interviews, and competitive analysis to ensure the solution truly addresses the core challenges.",
-        "I'm a strong advocate for agile development methodologies and believe in the power of iterative improvement. Regular testing, code reviews, and user feedback loops are integral parts of my development process.",
-        "Collaboration is key to my work style. Whether working with designers, backend developers, or clients, I prioritize clear communication and believe that the best solutions emerge from diverse perspectives coming together."
+        "I start with the operating constraint, not the framework: who uses the system, what must happen in real time, what can fail, and what data is allowed to leave the machine. That keeps architecture grounded in the product's actual environment.",
+        "For AI workloads, I separate capture, inference and persistence so expensive models can run concurrently without freezing the interface. I profile before optimizing, build graceful CPU/GPU fallbacks, and make uncertain classifications visible for human review instead of presenting estimates as ground truth.",
+        "For product engineering, I prefer typed contracts, small testable services, clear logs and secure defaults such as JWT/RBAC. Automated tests, code review, reproducible Docker builds and staged releases are part of development—not tasks postponed until the end.",
+        "I communicate decisions in plain language and keep feedback loops short with operators, designers and stakeholders. The result I aim for is software that is maintainable for engineers, understandable for users and reliable after deployment."
       ]
     },
     values: {
@@ -142,16 +142,16 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               {/* Profile Card */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+              <div className="overflow-hidden rounded-xl bg-white shadow-lg dark:bg-gray-800">
                 {/* Image with Overlay */}
-                <div className="relative group">
+                <div className="group relative mx-auto mt-4 aspect-square w-28 overflow-hidden rounded-2xl sm:mt-0 sm:aspect-auto sm:w-full sm:rounded-none">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <img 
                     src={pic} 
                     alt="Kinshuk Kush" 
                     width={800}
                     height={1200}
-                    className="w-full h-auto transform transition duration-500 group-hover:scale-105 select-none"
+                    className="h-full w-full select-none object-cover object-top transition duration-500 group-hover:scale-105 sm:h-auto"
                     draggable={false}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
@@ -361,27 +361,27 @@ const About = () => {
               {/* Timeline Items */}
               {[
                 {
-                  year: "2024",
-                  title: "Full Stack Developer",
-                  description: "Working on exciting projects using React, Node.js, and modern web technologies.",
+                  year: "Mar 2026",
+                  title: "Software Developer — CyberJoar AI",
+                  description: "Building production computer vision, backend and full-stack systems in Gurugram.",
                   side: "left"
                 },
                 {
-                  year: "2023",
-                  title: "Started B.Tech CSE",
-                  description: "Enrolled in Computer Science Engineering to deepen my technical knowledge.",
+                  year: "May 2026",
+                  title: "Completed B.Tech CSE",
+                  description: "Graduated from Lovely Professional University with a foundation in software engineering.",
                   side: "right"
                 },
                 {
-                  year: "2022",
-                  title: "First Web Project",
-                  description: "Built my first complete web application, sparking my passion for development.",
+                  year: "2024–25",
+                  title: "Freelance Software Engineer",
+                  description: "Delivered full-stack products for clients from requirements through deployment.",
                   side: "left"
                 },
                 {
-                  year: "2021",
-                  title: "Discovered Programming",
-                  description: "Wrote my first lines of code and fell in love with problem-solving.",
+                  year: "2022",
+                  title: "Started B.Tech CSE",
+                  description: "Began formal computer science study and expanded from web projects into systems engineering.",
                   side: "right"
                 }
               ].map((item, index) => (
@@ -412,35 +412,6 @@ const About = () => {
           <SkillsSection />
           <ExperienceSection />
 
-          {/* Call to Action */}
-          <motion.div
-            className="mt-16 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-          >
-            <div className="bg-gradient-to-r from-primary-100 to-secondary-100 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-2xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-                Let's Work Together
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-                I'm always interested in hearing about new projects and opportunities. 
-                Whether you have a question or just want to say hi, feel free to reach out!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail className="w-5 h-5" />
-                  Get In Touch
-                </motion.a>
-                
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
     </PageTransition>

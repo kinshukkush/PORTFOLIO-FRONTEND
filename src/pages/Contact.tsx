@@ -29,8 +29,8 @@ const Contact = () => {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: 'Location',
-      value: 'Jaipur, Rajasthan, INDIA',
-      link: 'https://maps.google.com/?q=Jaipur,Rajasthan',
+      value: 'Gurugram, Haryana, INDIA',
+      link: 'https://maps.google.com/?q=Gurugram,Haryana',
       description: 'Open to remote opportunities'
     }
   ];
@@ -53,7 +53,7 @@ const Contact = () => {
     {
       icon: <Instagram className="h-5 w-5" />,
       name: 'Instagram',
-      link: 'https://instagram.com/kinshuk._.saxena',
+      link: 'https://www.instagram.com/kinshuk_.saxena',
       color: 'hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600',
       username: '@kinshuk._.saxena'
     }
@@ -283,7 +283,7 @@ const Contact = () => {
                 <h3 className="text-xl font-semibold mb-4">Find Me Here</h3>
                 <div className="aspect-video bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden shadow-inner">
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227749.01283874588!2d75.72347644999999!3d26.8856553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1633938424363!5m2!1sen!2sin" 
+                    src="https://www.google.com/maps?q=Gurugram,Haryana&output=embed"
                     className="w-full h-full border-0" 
                     allowFullScreen 
                     loading="lazy" 

@@ -4,7 +4,6 @@ import { Search, X, Filter, Grid, List, Code2, Sparkles, TrendingUp } from 'luci
 import ProjectCard from '../ui/ProjectCard';
 import SectionHeading from '../ui/SectionHeading';
 import { projects } from '../../data/projects';
-import FeaturedProjectsCarousel from './FeaturedProjectsCarousel';
 
 const ProjectsSection = () => {
   const [visibleProjects, setVisibleProjects] = useState(6);
@@ -64,7 +63,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900/30">
+    <section id="projects" className="min-h-screen py-20 pt-32 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900/30">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -72,14 +71,12 @@ const ProjectsSection = () => {
           transition={{ duration: 0.6 }}
         >
           <SectionHeading
-            title="Featured Projects"
-            subtitle="Explore my latest work and creative endeavors showcasing modern web technologies"
+            title="Project Archive"
+            subtitle="Search, filter and explore the full collection of production systems, experiments and client work."
             centered
             accent
           />
         </motion.div>
-
-        <FeaturedProjectsCarousel />
 
         {/* Stats Bar */}
         <motion.div
@@ -113,7 +110,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="glass-surface mb-8 space-y-4 p-4 sm:p-5"
+          className="glass-surface mb-8 space-y-4 overflow-hidden p-4 sm:p-5"
         >
           {/* Search and View Toggle */}
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -167,25 +164,36 @@ const ProjectsSection = () => {
           </div>
 
           {/* Filters Row */}
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Category Pills */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${selectedCategory === category
-                    ? 'bg-primary-500 text-white shadow-md'
-                      : 'glass-button text-gray-700 dark:text-gray-300'
-                    }`}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              ))}
+          <div className="flex flex-col gap-3 md:flex-row md:items-center">
+            {/* Single-line, gently rotating category rail */}
+            <div className="category-rail min-w-0 flex-1 overflow-hidden" aria-label="Project categories">
+              <div className="category-rail-track flex w-max gap-2">
+                <div className="flex shrink-0 gap-2 pr-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 ${selectedCategory === category
+                        ? 'mac-glass-active text-[var(--text-primary)]'
+                        : 'mac-glass-button text-[var(--text-muted)]'
+                        }`}
+                    >
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </button>
+                  ))}
+                </div>
+                <div aria-hidden="true" className="flex shrink-0 gap-2 pr-2">
+                  {categories.map((category) => (
+                    <span key={`echo-${category}`} className="mac-glass-button whitespace-nowrap rounded-full px-3 py-1.5 text-xs text-[var(--text-muted)]">
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-2 self-end md:self-auto">
               <Filter className="w-4 h-4 text-gray-500" />
               <select
                 value={sortBy}
